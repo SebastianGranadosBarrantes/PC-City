@@ -1,0 +1,133 @@
+:root {
+  --pcb: #0a201e;          /* verde de placa de circuito */
+  --pcb-line: #1d4a43;
+  --silk: #f4f1e6;         /* serigrafía */
+  --gold: #e3b341;         /* contactos dorados */
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--silk);
+}
+
+canvas { display: block; }
+.hidden { display: none !important; }
+
+/* ---- HUD ---- */
+.hud-controls {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(10, 32, 30, 0.78);
+  font-size: 13px;
+}
+
+.hud-prompt {
+  position: fixed;
+  left: 50%;
+  bottom: 14%;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  background: var(--pcb);
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.hud-progress {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(10, 32, 30, 0.82);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.hud-progress-title { font-weight: 700; font-size: 15px; color: var(--gold); margin-bottom: 4px; }
+.hud-progress ul { margin: 0; padding: 0; list-style: none; }
+.hud-progress li { opacity: 0.75; }
+.hud-progress li.done { opacity: 1; }
+
+.hud-toast {
+  position: fixed;
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%);
+  z-index: 20;                 /* por encima del popup */
+  padding: 12px 22px;
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  background: var(--pcb);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ---- Popup de pieza ---- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(3, 12, 11, 0.5);
+}
+
+.popup {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: min(640px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  background: var(--pcb);
+  animation: popup-in 160ms ease-out;
+}
+
+.popup-guide {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--pcb-line);
+  font-size: 40px;
+}
+
+.popup-title { margin: 0 0 8px; font-size: 24px; line-height: 1.2; }
+.popup-text { margin: 0 0 16px; font-size: 16px; line-height: 1.55; max-width: 60ch; }
+
+.popup-tip {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: var(--pcb-line);
+  border-radius: 0 8px 8px 0;
+}
+.popup-tip h3 { margin: 0 0 4px; font-size: 15px; color: var(--gold); }
+.popup-tip p { margin: 0; font-size: 15px; line-height: 1.5; }
+
+.popup-hint { margin: 0; font-size: 13px; opacity: 0.7; }
+
+@keyframes popup-in {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .popup { animation: none; }
+}
+@media (max-width: 520px) {
+  .popup { flex-direction: column; }
+}

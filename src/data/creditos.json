@@ -1,0 +1,28 @@
+{
+  "desarrollo": [
+    { "rol": "Desarrollo y diseño", "nombre": "Sebastián Granados Barrantes" },
+    { "rol": "Proyecto", "nombre": "Proyecto creativo, Psicología del aprendizaje" }
+  ],
+  "herramientas": [
+    { "nombre": "three.js", "licencia": "MIT", "url": "https://threejs.org" },
+    { "nombre": "Vite", "licencia": "MIT", "url": "https://vite.dev" }
+  ],
+  "modelos": [
+    { "nombre": "CPU (procesador)", "autor": "iPoly3D", "licencia": "", "url": "" },
+    { "nombre": "RAM (memoria)", "autor": "iPoly3D", "licencia": "", "url": "" },
+    { "nombre": "Placa madre", "autor": "", "licencia": "", "url": "" },
+    { "nombre": "Graphics card (tarjeta gráfica)", "autor": "pgonarg (vía Poly Pizza)", "licencia": "CC-BY", "url": "" },
+    { "nombre": "Almacenamiento (SSD M.2)", "autor": "", "licencia": "", "url": "" },
+    { "nombre": "PSU Power Supply Unit (fuente de poder)", "autor": "Groovex", "licencia": "CC BY 4.0", "url": "https://skfb.ly/oBPC9" },
+    { "nombre": "Cooler Master CPU Cooler (disipador)", "autor": "BlenderFace", "licencia": "CC BY 4.0", "url": "https://skfb.ly/oQV6T" },
+    { "nombre": "Basic PC case (gabinete)", "autor": "Sousinho", "licencia": "CC BY 4.0", "url": "https://skfb.ly/oyEOo" },
+    { "nombre": "Town House (edificio)", "autor": "Quaternius", "licencia": "", "url": "" },
+    { "nombre": "Large Building (edificio)", "autor": "Kenney", "licencia": "", "url": "" },
+    { "nombre": "Farm house (edificio)", "autor": "Poly by Google (vía Poly Pizza)", "licencia": "CC-BY", "url": "" },
+    { "nombre": "Log cabin (edificio)", "autor": "Poly by Google (vía Poly Pizza)", "licencia": "CC-BY", "url": "" },
+    { "nombre": "Brit's House (edificio)", "autor": "Anonymous (vía Poly Pizza)", "licencia": "CC-BY", "url": "" },
+    { "nombre": "Traffic light (semáforo)", "autor": "Kay Lousberg", "licencia": "", "url": "" },
+    { "nombre": "Stop sign (señal de alto)", "autor": "Poly by Google (vía Poly Pizza)", "licencia": "CC-BY", "url": "" },
+    { "nombre": "Parada de bus", "autor": "", "licencia": "", "url": "" }
+  ]
+}

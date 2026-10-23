@@ -1,0 +1,78 @@
+[
+  {
+    "id": "cpu",
+    "nombre": "Procesador (CPU)",
+    "descripcion": "Es el cerebro del computador: ejecuta las instrucciones de los programas y coordina el trabajo de los demás componentes. Su rendimiento depende de la cantidad de núcleos y de su velocidad, medida en GHz.",
+    "mantenimiento": "Si se retira el disipador, hay que limpiar la pasta térmica vieja y aplicar nueva. Una temperatura que sube sin motivo suele indicar polvo o pasta seca.",
+    "x": -55, "z": -52, "ancho": 14, "alto": 8, "fondo": 14,
+    "filePath": "assets/models/parts/cpu.glb"
+  },
+  {
+    "id": "ram",
+    "nombre": "Memoria RAM",
+    "descripcion": "Es la memoria de trabajo: guarda temporalmente los datos y programas que se están usando, porque es mucho más rápida que el disco. Su contenido se borra al apagar el equipo.",
+    "mantenimiento": "Instálala con el equipo apagado y desconectado, sin tocar los contactos dorados, y presiona hasta que los seguros laterales cierren. Una RAM mal asentada puede impedir que el equipo encienda.",
+    "x": -85, "z": -11, "ancho": 18, "alto": 24, "fondo": 5,
+    "filePath": "assets/models/parts/ram.glb"
+  },
+  {
+    "id": "placa",
+    "nombre": "Placa madre",
+    "descripcion": "Es la tarjeta principal donde se conectan el procesador, la RAM, el almacenamiento y las demás tarjetas. Lleva los circuitos que permiten que todos los componentes se comuniquen.",
+    "mantenimiento": "Límpiala con brocha antiestática o aire comprimido, sin humedad. Si el equipo pierde la fecha y la hora o la configuración del BIOS, revisa la batería de la placa.",
+    "x": -91, "z": 42, "ancho": 16, "alto": 16, "fondo": 16,
+    "filePath": "assets/models/parts/motherboard.glb",
+    "rotacion": { "x": 90 }
+  },
+  {
+    "id": "gpu",
+    "nombre": "Tarjeta gráfica (GPU)",
+    "descripcion": "Procesa las imágenes que se ven en pantalla. Es clave para videojuegos, diseño y edición de video, y tiene su propia memoria y su propio sistema de enfriamiento.",
+    "mantenimiento": "Limpia el polvo de sus ventiladores y disipador, verifica que el cable de alimentación esté bien conectado y mantén actualizados los controladores.",
+    "x": 14, "z": -48, "ancho": 12, "alto": 12, "fondo": 12,
+    "filePath": "assets/models/parts/gpu.glb"
+  },
+  {
+    "id": "almacenamiento_hdd",
+    "nombre": "Almacenamiento (HDD)",
+    "descripcion": "Guarda de forma permanente el sistema operativo, los programas y los archivos. El HDD usa discos que giran, tiende a ser más lento y ruidoso, pero es más barato y ofrece más capacidad de almacenamiento que un SSD.",
+    "mantenimiento": "Haz respaldos periódicos. Un HDD no debe golpearse ni moverse mientras está encendido, el HDD se beneficia de la desfragmentación. La longevidad de un HDD puede mejorar si se implementa un RAID o se combina con un SSD.",
+    "x": -45, "z": 69, "ancho": 14, "alto": 6, "fondo": 20,
+    "filePath": "assets/models/parts/hdd.glb",
+    "rotacion": { "x": 90 }
+  },
+  {
+    "id": "almacenamiento_ssd",
+    "nombre": "Almacenamiento (SSD)",
+    "descripcion": "Guarda de forma permanente el sistema operativo, los programas y los archivos. El SSD usa memoria flash, sin partes móviles, y es mucho más rápido. Hoy en día, la mayoría de los equipos usan SSD en lugar de HDD.",
+    "mantenimiento": "Haz respaldos periódicos. El SSD no se beneficia de la desfragmentación; no es necesario hacerlo. Evita apagar el equipo mientras se están escribiendo datos en el SSD. La vida útil de un SSD es limitada, pero hoy en día es suficiente para la mayoría de los usuarios.",
+    "x": 82, "z": 18, "ancho": 14, "alto": 6, "fondo": 20,
+    "filePath": "assets/models/parts/ssd_m2.glb",
+    "rotacion": { "x": 90, "y": 180 }
+  },
+  {
+    "id": "fuente",
+    "nombre": "Fuente de poder",
+    "descripcion": "Convierte la corriente alterna de la toma eléctrica en corriente continua de bajo voltaje y la reparte a todos los componentes.",
+    "mantenimiento": "Nunca la abras: sus capacitores pueden conservar carga aunque esté desconectada. Mantén limpias sus rejillas de ventilación y, si falla, pruébala con un tester o cámbiala.",
+    "x": 55, "z": 72, "ancho": 14, "alto": 14, "fondo": 14,
+    "filePath": "assets/models/parts/psu.glb"
+  },
+  {
+    "id": "cooler",
+    "nombre": "Disipador y ventilador",
+    "descripcion": "Extrae el calor del procesador: un bloque de metal absorbe el calor y un ventilador lo expulsa. Sin enfriamiento, el procesador reduce su velocidad o se apaga para protegerse.",
+    "mantenimiento": "Quita el polvo con aire comprimido, sujetando las aspas para que no giren de más. Renueva la pasta térmica cuando retires el disipador.",
+    "x": 55, "z": -53, "ancho": 12, "alto": 12, "fondo": 12,
+    "filePath": "assets/models/parts/cpu_cooler.glb"
+  },
+  {
+    "id": "case",
+    "nombre": "Gabinete (case)",
+    "descripcion": "Es la estructura que aloja y protege los componentes. Además de sostenerlos, organiza el flujo de aire que mantiene fresco el equipo.",
+    "mantenimiento": "Limpia los filtros de polvo con regularidad y ordena los cables para que no estorben el flujo de aire.",
+    "x": 18, "z": 102, "ancho": 20, "alto": 24, "fondo": 20,
+    "filePath": "assets/models/parts/pc_case.glb",
+    "rotacion": { "y": 90 }
+  }
+]

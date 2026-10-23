@@ -1,0 +1,30 @@
+<section class="panel" id="panel-inicio" aria-labelledby="titulo-juego">
+  <p class="eyebrow">Mantenimiento de equipo de cómputo</p>
+  <h1 id="titulo-juego">Ciudad PC</h1>
+  <p class="lead">
+    Recorre la ciudad en tu carro, visita cada pieza de la computadora y pon a prueba
+    lo que aprendiste en el autódromo.
+  </p>
+
+  <form id="form-inicio" novalidate>
+    <label for="nombre-jugador">Tu nombre</label>
+    <input
+      id="nombre-jugador"
+      name="nombre"
+      type="text"
+      maxlength="20"
+      autocomplete="off"
+      spellcheck="false"
+      placeholder="Escribe tu nombre"
+      aria-describedby="nombre-error"
+    />
+    <p class="form-error" id="nombre-error" role="alert" hidden></p>
+
+    <div class="actions">
+      <button type="submit" id="btn-jugar" class="btn btn-primary" disabled>Cargando ciudad…</button>
+      <button type="button" id="btn-creditos" class="btn btn-secondary">Créditos</button>
+    </div>
+  </form>
+
+  <p class="hint">Conduce con W A S D o las flechas. Presiona E para interactuar.</p>
+</section>
