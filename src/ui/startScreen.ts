@@ -1,6 +1,7 @@
 import inicioHtml from '../views/inicio.html?raw';
 import creditosHtml from '../views/creditos.html?raw';
-import { validarNombre } from '../core/session';
+import { validarNombre, validarCodigoSesion } from '../core/session';
+import { CloudSessionService } from '../core/cloudSession';
 
 export interface CreditosData {
   desarrollo: { rol: string; nombre: string }[];
@@ -10,18 +11,21 @@ export interface CreditosData {
 
 export interface StartScreenOptions {
   creditos: CreditosData;
-  /** Se llama con el nombre ya validado cuando el jugador presiona "Jugar". */
-  onStart: (nombre: string) => void;
+  /** Se llama con el nombre y código de sesión validados cuando el jugador presiona "Jugar". */
+  onStart: (nombre: string, codigoSesion: string) => void;
   onShowLeaderboard?: () => void;
+  onOpenTeacherPanel?: () => void;
 }
 
-/** Pantalla de inicio (nombre + Jugar + Créditos) y la pantalla de créditos. */
+/** Pantalla de inicio (nombre + sesión + Jugar + Créditos + Docente). */
 export class StartScreen {
   private readonly root: HTMLDivElement;
   private readonly panelInicio: HTMLElement;
   private readonly panelCreditos: HTMLElement;
-  private readonly input: HTMLInputElement;
-  private readonly error: HTMLElement;
+  private readonly inputNombre: HTMLInputElement;
+  private readonly inputSesion: HTMLInputElement;
+  private readonly errorNombre: HTMLElement;
+  private readonly errorSesion: HTMLElement;
   private readonly btnJugar: HTMLButtonElement;
   private listo = false;
 
@@ -33,31 +37,79 @@ export class StartScreen {
 
     this.panelInicio = this.find('#panel-inicio');
     this.panelCreditos = this.find('#panel-creditos');
-    this.input = this.find<HTMLInputElement>('#nombre-jugador');
-    this.error = this.find('#nombre-error');
+    this.inputNombre = this.find<HTMLInputElement>('#nombre-jugador');
+    this.inputSesion = this.find<HTMLInputElement>('#codigo-sesion');
+    this.errorNombre = this.find('#nombre-error');
+    this.errorSesion = this.find('#sesion-error');
     this.btnJugar = this.find<HTMLButtonElement>('#btn-jugar');
+
+    // Auto-completar sesión desde la URL si viene como parámetro ?session=...
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionParam = urlParams.get('session');
+    if (sessionParam) {
+      this.inputSesion.value = sessionParam.trim().toUpperCase();
+    }
 
     this.renderCreditos(options.creditos);
 
-    this.find<HTMLFormElement>('#form-inicio').addEventListener('submit', (e) => {
+    this.find<HTMLFormElement>('#form-inicio').addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!this.listo) return;
-      const resultado = validarNombre(this.input.value);
-      if (!resultado.ok) {
-        this.mostrarError(resultado.mensaje);
-        this.input.focus();
+
+      // 1. Validar formato de nombre
+      const resNombre = validarNombre(this.inputNombre.value);
+      if (!resNombre.ok) {
+        this.mostrarErrorNombre(resNombre.mensaje);
+        this.inputNombre.focus();
         return;
       }
-      this.ocultarError();
-      options.onStart(resultado.nombre);
+      this.ocultarErrorNombre();
+
+      // 2. Validar formato de código
+      const resSesion = validarCodigoSesion(this.inputSesion.value);
+      if (!resSesion.ok) {
+        this.mostrarErrorSesion(resSesion.mensaje);
+        this.inputSesion.focus();
+        return;
+      }
+      this.ocultarErrorSesion();
+
+      // 3. Validar existencia en la nube (Firestore / local)
+      this.btnJugar.disabled = true;
+      this.btnJugar.textContent = 'Verificando sesión…';
+
+      const validCloud = await CloudSessionService.validateSession(resSesion.codigo);
+      if (!validCloud.ok) {
+        this.mostrarErrorSesion(validCloud.mensaje || 'Sesión no válida.');
+        this.inputSesion.focus();
+        this.btnJugar.disabled = false;
+        this.btnJugar.textContent = 'Jugar';
+        return;
+      }
+
+      this.btnJugar.disabled = false;
+      this.btnJugar.textContent = 'Jugar';
+      options.onStart(resNombre.nombre, resSesion.codigo);
     });
 
-    this.input.addEventListener('input', () => this.ocultarError());
+    this.inputNombre.addEventListener('input', () => this.ocultarErrorNombre());
+    this.inputSesion.addEventListener('input', () => {
+      this.inputSesion.value = this.inputSesion.value.toUpperCase();
+      this.ocultarErrorSesion();
+    });
+
     this.find('#btn-creditos').addEventListener('click', () => this.mostrarPanel('creditos'));
     this.find('#btn-volver').addEventListener('click', () => this.mostrarPanel('inicio'));
     this.find('#btn-tabla-inicio')?.addEventListener('click', () => options.onShowLeaderboard?.());
+    this.find('#btn-docente-inicio')?.addEventListener('click', () => options.onOpenTeacherPanel?.());
 
-    this.input.focus();
+    this.inputNombre.focus();
+  }
+
+  setSessionCode(codigo: string): void {
+    if (this.inputSesion) {
+      this.inputSesion.value = codigo.toUpperCase().trim();
+    }
   }
 
   /** Habilita el botón Jugar (cuando la ciudad ya terminó de cargar). */
@@ -87,18 +139,29 @@ export class StartScreen {
   private mostrarPanel(cual: 'inicio' | 'creditos'): void {
     this.panelInicio.classList.toggle('hidden', cual !== 'inicio');
     this.panelCreditos.classList.toggle('hidden', cual !== 'creditos');
-    if (cual === 'inicio') this.input.focus();
+    if (cual === 'inicio') this.inputNombre.focus();
   }
 
-  private mostrarError(mensaje: string): void {
-    this.error.textContent = mensaje;
-    this.error.hidden = false;
-    this.input.setAttribute('aria-invalid', 'true');
+  private mostrarErrorNombre(mensaje: string): void {
+    this.errorNombre.textContent = mensaje;
+    this.errorNombre.hidden = false;
+    this.inputNombre.setAttribute('aria-invalid', 'true');
   }
 
-  private ocultarError(): void {
-    this.error.hidden = true;
-    this.input.removeAttribute('aria-invalid');
+  private ocultarErrorNombre(): void {
+    this.errorNombre.hidden = true;
+    this.inputNombre.removeAttribute('aria-invalid');
+  }
+
+  private mostrarErrorSesion(mensaje: string): void {
+    this.errorSesion.textContent = mensaje;
+    this.errorSesion.hidden = false;
+    this.inputSesion.setAttribute('aria-invalid', 'true');
+  }
+
+  private ocultarErrorSesion(): void {
+    this.errorSesion.hidden = true;
+    this.inputSesion.removeAttribute('aria-invalid');
   }
 
   private renderCreditos(data: CreditosData): void {
@@ -145,7 +208,7 @@ function agregarItem(
     if (campo.valor.trim()) {
       parte.textContent = campo.valor;
     } else {
-      parte.textContent = `${campo.etiqueta} por completar`; // se ve en rojo para no olvidarlo
+      parte.textContent = `${campo.etiqueta} por completar`;
       parte.className = 'credit-missing';
     }
     meta.append(parte);

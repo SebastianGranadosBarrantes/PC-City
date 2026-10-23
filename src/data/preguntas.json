@@ -11,7 +11,7 @@
     ],
     "correcta": 1,
     "explicacion": "El CPU es el cerebro del equipo: ejecuta las instrucciones y coordina todos los componentes. Su velocidad se mide en GHz.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "ram",
@@ -25,7 +25,7 @@
     ],
     "correcta": 2,
     "explicacion": "Tocar los contactos dorados puede dañarla por grasa o estática. Se instala apagado y presionando hasta oír el clic de los seguros.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "placa",
@@ -39,7 +39,7 @@
     ],
     "correcta": 0,
     "explicacion": "La batería de la placa madre (pila de botón) mantiene alimentada la memoria que guarda la hora y configuración del BIOS cuando no hay energía.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "gpu",
@@ -53,7 +53,7 @@
     ],
     "correcta": 1,
     "explicacion": "La GPU está especializada en procesamiento gráfico masivo y cuenta con memoria VRAM y ventilación propias.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_hdd",
@@ -67,7 +67,7 @@
     ],
     "correcta": 0,
     "explicacion": "Los HDD tienen platos giratorios y cabezales a micras de distancia; cualquier golpe mientras giran puede rayar los discos y causar pérdida total de datos.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_ssd",
@@ -81,7 +81,7 @@
     ],
     "correcta": 2,
     "explicacion": "Al no tener partes mecánicas, el acceso es instantáneo en cualquier celda. Desfragmentar un SSD solo genera escrituras innecesarias que acortan su vida útil.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "fuente",
@@ -95,7 +95,7 @@
     ],
     "correcta": 1,
     "explicacion": "Los capacitores de alta capacidad pueden almacenar descargas eléctricas mortales o muy peligrosas aun cuando la fuente esté desenchufada.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "cooler",
@@ -109,7 +109,7 @@
     ],
     "correcta": 1,
     "explicacion": "El aire a presión puede forzar el ventilador más allá de su velocidad de diseño, dañando el rodamiento o induciendo corrientes eléctricas indeseadas.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   },
   {
     "id": "case",
@@ -123,6 +123,6 @@
     ],
     "correcta": 1,
     "explicacion": "El gabinete diseña túneles de viento para extraer calor; limpiar filtros y ordenar cables garantiza que el aire fresco circule adecuadamente.",
-    "tiempoSegundos": 15
+    "tiempoSegundos": 30
   }
 ]

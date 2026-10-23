@@ -29,7 +29,7 @@ export class Hud {
 
     const etiqueta = document.createElement('span');
     etiqueta.className = 'hud-player-label';
-    etiqueta.textContent = 'Jugador';
+    etiqueta.textContent = 'Estudiante & Sesión';
     this.playerName = document.createElement('span');
     this.playerName.className = 'hud-player-name';
     this.player = document.createElement('div');
@@ -43,6 +43,11 @@ export class Hud {
   setVisible(visible: boolean): void {
     for (const el of [this.controls, this.progress, this.player]) el.classList.toggle('hidden', !visible);
     if (!visible) this.hidePrompt();
+  }
+
+  setPlayer(nombre: string, sesion = 'DEFAULT'): void {
+    this.playerName.textContent = `${nombre} (${sesion})`;
+    this.player.title = `Estudiante: ${nombre} | Sesión: ${sesion}`;
   }
 
   setPlayerName(nombre: string): void {

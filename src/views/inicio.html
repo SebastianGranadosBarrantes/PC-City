@@ -3,26 +3,46 @@
   <h1 id="titulo-juego">Ciudad PC</h1>
   <p class="lead">
     Recorre la ciudad en tu carro, visita cada pieza de la computadora y pon a prueba
-    lo que aprendiste en el coliseo.
+    lo que aprendiste en el coliseo para competir por el chocolate de la clase.
   </p>
 
   <form id="form-inicio" novalidate>
-    <label for="nombre-jugador">Tu nombre</label>
-    <input
-      id="nombre-jugador"
-      name="nombre"
-      type="text"
-      maxlength="20"
-      autocomplete="off"
-      spellcheck="false"
-      placeholder="Escribe tu nombre"
-      aria-describedby="nombre-error"
-    />
-    <p class="form-error" id="nombre-error" role="alert" hidden></p>
+    <div style="margin-bottom: 14px;">
+      <label for="nombre-jugador">Tu nombre</label>
+      <input
+        id="nombre-jugador"
+        name="nombre"
+        type="text"
+        maxlength="20"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Escribe tu nombre"
+        aria-describedby="nombre-error"
+      />
+      <p class="form-error" id="nombre-error" role="alert" hidden></p>
+    </div>
+
+    <div style="margin-bottom: 18px;">
+      <label for="codigo-sesion">Código de Sesión (dado por el profesor)</label>
+      <input
+        id="codigo-sesion"
+        name="sesion"
+        type="text"
+        maxlength="15"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Ej: CLASE-101 o DEFAULT"
+        value="DEFAULT"
+        style="text-transform: uppercase; font-family: monospace; font-weight: 700; color: var(--gold);"
+        aria-describedby="sesion-error"
+      />
+      <p class="form-error" id="sesion-error" role="alert" hidden></p>
+    </div>
 
     <div class="actions">
       <button type="submit" id="btn-jugar" class="btn btn-primary" disabled>Cargando ciudad…</button>
       <button type="button" id="btn-tabla-inicio" class="btn btn-secondary">Tabla 🍫</button>
+      <button type="button" id="btn-docente-inicio" class="btn btn-secondary">🎓 Docente</button>
       <button type="button" id="btn-creditos" class="btn btn-secondary">Créditos</button>
     </div>
   </form>

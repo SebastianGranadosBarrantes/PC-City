@@ -1,6 +1,7 @@
 import './style.css';
 import './styles/screens.css';
 import './styles/coliseo.css';
+import './styles/teacher.css';
 import * as THREE from 'three';
 import piezasJson from './data/piezas.json';
 import creditosJson from './data/creditos.json';
@@ -17,6 +18,7 @@ import { Hud } from './ui/hud';
 import { Popup } from './ui/popup';
 import { StartScreen } from './ui/startScreen';
 import { ColiseoQuiz } from './ui/coliseoQuiz';
+import { TeacherPanel } from './ui/teacherPanel';
 
 const piezas: PiezaData[] = piezasJson;
 
@@ -56,25 +58,34 @@ const session = new Session();
 const progress = new Progress(piezas.map((p) => p.id));
 
 const coliseoQuiz = new ColiseoQuiz({
-  onNewStudent: (nuevoNombre) => {
-    session.iniciar(nuevoNombre);
-    hud.setPlayerName(session.nombre);
+  onNewStudent: (nuevoNombre, nuevaSesion) => {
+    session.iniciar(nuevoNombre, nuevaSesion);
+    hud.setPlayer(session.nombre, session.codigoSesion);
+  },
+});
+
+const teacherPanel = new TeacherPanel({
+  onSessionActive: (codigo) => {
+    startScreen.setSessionCode(codigo);
   },
 });
 
 // La pantalla de inicio se muestra YA, mientras la ciudad se carga detrás.
 const startScreen = new StartScreen({
   creditos: creditosJson,
-  onStart: (nombre) => {
-    session.iniciar(nombre);
-    hud.setPlayerName(session.nombre);
+  onStart: (nombre, codigoSesion) => {
+    session.iniciar(nombre, codigoSesion);
+    hud.setPlayer(session.nombre, session.codigoSesion);
     hud.setVisible(true);
     startScreen.hide();
     chase.snap(); // la cámara pasa de golpe a ir detrás del carro
     estado = 'jugando';
   },
   onShowLeaderboard: () => {
-    coliseoQuiz.showLeaderboardView();
+    coliseoQuiz.showLeaderboardView(session.codigoSesion || 'DEFAULT');
+  },
+  onOpenTeacherPanel: () => {
+    teacherPanel.open();
   },
 });
 
@@ -94,7 +105,7 @@ const city = await buildCity(scene, piezas, {
     progress.visit(pieza.id);
     popup.showPieza(pieza);
     if (!estabaCompleto && progress.isComplete) {
-      hud.toast('¡Coliseo desbloqueado! Dirígete al norte 🏛️');
+      hud.toast('¡Coliseo desbloqueado! Ve a probar tu conocimiento en el Desafío 🍫', 5000);
     }
   },
   onAutodromo: () => {
@@ -102,7 +113,7 @@ const city = await buildCity(scene, piezas, {
       popup.show('Coliseo bloqueado', `Primero visita todas las piezas de la ciudad: ${faltan(progress.missing)}.`);
       return;
     }
-    coliseoQuiz.open(session.nombre);
+    coliseoQuiz.open(session.nombre, session.codigoSesion);
   },
   autodromoPrompt: () =>
     progress.isComplete
@@ -153,8 +164,8 @@ function orbitarCiudad(time: number): void {
 }
 
 function actualizarJuego(dt: number): void {
-  // Con el popup o el coliseo abierto el carro no recibe órdenes (se frena solo).
-  const frozen = popup.isOpen || coliseoQuiz.isOpen;
+  // Con el popup, coliseo o panel docente abierto el carro no recibe órdenes (se frena solo).
+  const frozen = popup.isOpen || coliseoQuiz.isOpen || teacherPanel.isOpen;
   car.update(dt, frozen ? 0 : input.throttle, frozen ? 0 : input.steer);
 
   for (const box of city.colliders) {
@@ -162,7 +173,7 @@ function actualizarJuego(dt: number): void {
   }
   keepInsideWorld();
 
-  if (popup.isOpen || coliseoQuiz.isOpen) {
+  if (popup.isOpen || coliseoQuiz.isOpen || teacherPanel.isOpen) {
     hud.hidePrompt();
     if (popup.isOpen && (input.wasPressed('KeyE') || input.wasPressed('Escape'))) popup.close();
   } else {

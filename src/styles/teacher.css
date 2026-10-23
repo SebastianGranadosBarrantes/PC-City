@@ -1,0 +1,185 @@
+/* ========================================================
+   TEACHER PANEL & LIVE PROJECTOR LEADERBOARD STYLING
+   ======================================================== */
+
+.teacher-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  overflow-y: auto;
+  background: radial-gradient(ellipse at center, rgba(3, 12, 11, 0.92), rgba(1, 6, 5, 0.98));
+  backdrop-filter: blur(10px);
+}
+
+.teacher-card {
+  width: min(680px, 100%);
+  max-height: 92vh;
+  box-sizing: border-box;
+  padding: 28px;
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  background: var(--pcb);
+  color: var(--silk);
+  overflow-y: auto;
+}
+
+.cloud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cloud-badge.online {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #4caf50;
+  color: #81c784;
+}
+
+.cloud-badge.simulated {
+  background: rgba(255, 152, 0, 0.2);
+  border: 1px solid #ff9800;
+  color: #ffb74d;
+}
+
+.session-display-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 18px 0;
+  border-radius: 14px;
+  background: rgba(29, 74, 67, 0.4);
+  border: 2px dashed var(--gold);
+  text-align: center;
+}
+
+.session-display-code {
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #ffd700;
+  font-family: monospace;
+  margin: 6px 0;
+  text-shadow: 0 0 16px rgba(227, 179, 65, 0.4);
+}
+
+/* ========================================================
+   FULLSCREEN LIVE PROJECTOR SCREEN
+   ======================================================== */
+.projector-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 40px;
+  background: radial-gradient(circle at 50% 20%, #0d2c29 0%, #051413 70%, #020807 100%);
+  color: var(--silk);
+  overflow-y: auto;
+}
+
+.projector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(227, 179, 65, 0.4);
+}
+
+.projector-title-group h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.projector-code-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background: rgba(227, 179, 65, 0.15);
+  border: 2px solid var(--gold);
+}
+
+.projector-code-text {
+  font-family: monospace;
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffd700;
+  letter-spacing: 0.08em;
+}
+
+.projector-podium {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+  align-items: end;
+}
+
+.podium-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 14px;
+  border-radius: 16px;
+  background: rgba(10, 32, 30, 0.85);
+  border: 2px solid rgba(227, 179, 65, 0.3);
+  text-align: center;
+  transition: transform 300ms ease;
+}
+
+.podium-slot.rank-1 {
+  border-color: #ffd700;
+  background: linear-gradient(180deg, rgba(74, 44, 23, 0.6) 0%, rgba(20, 10, 5, 0.85) 100%);
+  box-shadow: 0 0 32px rgba(227, 179, 65, 0.35);
+  transform: translateY(-8px);
+}
+
+.podium-medal {
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+
+.podium-slot.rank-1 .podium-medal {
+  font-size: 48px;
+  animation: bounce-chocolate 2.5s infinite ease-in-out;
+}
+
+.podium-name {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90%;
+}
+
+.podium-points {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.projector-table-card {
+  flex: 1;
+  background: rgba(6, 22, 26, 0.7);
+  border-radius: 14px;
+  border: 1px solid var(--pcb-line);
+  padding: 16px;
+  overflow-x: auto;
+}

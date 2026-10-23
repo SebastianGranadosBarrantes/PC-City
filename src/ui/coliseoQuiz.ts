@@ -1,5 +1,5 @@
 import preguntasJson from '../data/preguntas.json';
-import { Leaderboard } from '../core/leaderboard';
+import { CloudSessionService } from '../core/cloudSession';
 
 export interface PreguntaData {
   id: string;
@@ -12,7 +12,7 @@ export interface PreguntaData {
 }
 
 export interface ColiseoQuizOptions {
-  onNewStudent?: (nombre: string) => void;
+  onNewStudent?: (nombre: string, codigoSesion: string) => void;
   onClose?: () => void;
 }
 
@@ -30,6 +30,7 @@ export class ColiseoQuiz {
   private readonly options: ColiseoQuizOptions;
 
   private playerName = 'Estudiante';
+  private sessionCode = 'DEFAULT';
   private currentQuestion = 0;
   private score = 0;
   private streak = 0;
@@ -61,8 +62,9 @@ export class ColiseoQuiz {
     return !this.overlay.classList.contains('hidden');
   }
 
-  open(nombre: string): void {
+  open(nombre: string, sessionCode = 'DEFAULT'): void {
     this.playerName = nombre.trim() || 'Estudiante';
+    this.sessionCode = sessionCode.trim().toUpperCase() || 'DEFAULT';
     this.overlay.classList.remove('hidden');
     this.showWelcome();
   }
@@ -77,13 +79,16 @@ export class ColiseoQuiz {
   // ========================================================
   // PANTALLA 1: BIENVENIDA / LOBBY
   // ========================================================
-  private showWelcome(): void {
+  private async showWelcome(): Promise<void> {
     this.stopTimer();
     this.detachKeyListener();
-    const leader = Leaderboard.getLeader();
 
     this.container.innerHTML = `
-      <div class="coliseo-header-badge">🏛️ Coliseo de Ciudad PC</div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div class="coliseo-header-badge" style="margin: 0;">🏛️ Coliseo de Ciudad PC</div>
+        <div class="quiz-badge">Sesión: <span style="color: var(--gold);">${escapeHtml(this.sessionCode)}</span></div>
+      </div>
+
       <h1 class="coliseo-title">¡Desafío de Conocimiento!</h1>
       <p class="coliseo-lead">
         ¡Excelente trabajo, <strong>${escapeHtml(this.playerName)}</strong>! Has explorado las 9 piezas de la ciudad.
@@ -96,24 +101,33 @@ export class ColiseoQuiz {
           <h4>¡Premio de la Sesión: El Gran Chocolate!</h4>
           <p>
             Cada pregunta correcta otorga hasta <strong>1,000 puntos</strong> según tu rapidez.
-            ¡El estudiante que lidere la tabla de posiciones al final se lleva el chocolate de la clase!
+            ¡El estudiante que lidere la sesión <strong>${escapeHtml(this.sessionCode)}</strong> al final de la clase se lleva el chocolate!
           </p>
-          ${
-            leader
-              ? `<p style="margin-top: 6px; font-weight: 700; color: #ffd700;">👑 Líder actual: ${escapeHtml(
-                  leader.nombre,
-                )} (${leader.puntos.toLocaleString()} pts)</p>`
-              : `<p style="margin-top: 6px; font-style: italic;">¡Aún no hay puntuaciones registradas, sé el primero!</p>`
-          }
+          <div id="welcome-leader-slot" style="margin-top: 6px; font-weight: 700; color: #ffd700;">
+            Cargando líder actual…
+          </div>
         </div>
       </div>
 
       <div class="actions" style="margin-top: 10px;">
         <button type="button" id="btn-comenzar-quiz" class="btn btn-primary">¡Comenzar Desafío! 🚀</button>
-        <button type="button" id="btn-ver-tabla" class="btn btn-secondary">Ver Tabla 🏆</button>
+        <button type="button" id="btn-ver-tabla" class="btn btn-secondary">Ver Tabla de la Sesión 🏆</button>
         <button type="button" id="btn-salir-coliseo" class="btn btn-secondary">Volver a la Ciudad</button>
       </div>
     `;
+
+    // Cargar líder de la sesión en segundo plano
+    CloudSessionService.getScores(this.sessionCode).then((scores) => {
+      const slot = this.container.querySelector('#welcome-leader-slot');
+      if (slot) {
+        if (scores.length > 0) {
+          const leader = scores[0];
+          slot.innerHTML = `👑 Líder actual del chocolate: <strong>${escapeHtml(leader.nombre)}</strong> (${leader.puntos.toLocaleString()} pts)`;
+        } else {
+          slot.innerHTML = `¡Aún no hay puntuaciones en esta sesión, sé el primero en establecer récord!`;
+        }
+      }
+    });
 
     this.container.querySelector('#btn-comenzar-quiz')?.addEventListener('click', () => {
       this.startQuiz();
@@ -279,11 +293,10 @@ export class ColiseoQuiz {
 
     let earned = 0;
     if (isCorrect) {
-      // Fórmula Kahoot: entre 500 y 1000 puntos según rapidez, más bono de racha
       const factorTiempo = Math.max(0, Math.min(1, timeRemaining / this.questionDuration));
       earned = Math.round(500 + 500 * factorTiempo);
       if (this.streak >= 1) {
-        earned += Math.min(this.streak * 50, 200); // bono de racha
+        earned += Math.min(this.streak * 50, 200);
       }
       this.streak++;
       this.correctCount++;
@@ -292,7 +305,6 @@ export class ColiseoQuiz {
       this.streak = 0;
     }
 
-    // Actualizar estados visuales de las tarjetas
     const cards = this.container.querySelectorAll<HTMLButtonElement>('.kahoot-card');
     cards.forEach((btn, i) => {
       btn.disabled = true;
@@ -303,7 +315,6 @@ export class ColiseoQuiz {
       }
     });
 
-    // Mostrar panel de retroalimentación
     const feedbackArea = this.container.querySelector('#feedback-area');
     if (feedbackArea) {
       const isTimeout = selectedIndex === -1;
@@ -321,7 +332,7 @@ export class ColiseoQuiz {
             <strong>Explicación:</strong> ${escapeHtml(q.explicacion)}
           </p>
           <button type="button" id="btn-next-question" class="btn btn-primary" style="width: 100%;">
-            ${this.currentQuestion + 1 < this.preguntas.length ? 'Siguiente Pregunta ➔' : 'Ver Resultados Finales 🏆'}
+            ${this.currentQuestion + 1 < this.preguntas.length ? 'Siguiente Pregunta ➔' : 'Guardar y Ver Resultados 🏆'}
           </button>
         </div>
       `;
@@ -332,7 +343,6 @@ export class ColiseoQuiz {
         this.renderQuestion(this.currentQuestion + 1);
       });
 
-      // También avanzar con Enter o barra espaciadora
       this.attachKeyListener((key) => {
         if (key === 'Enter' || key === ' ') {
           this.renderQuestion(this.currentQuestion + 1);
@@ -342,14 +352,22 @@ export class ColiseoQuiz {
   }
 
   // ========================================================
-  // PANTALLA 3: RESULTADOS FINALES Y TABLA DE POSICIONES
+  // PANTALLA 3: RESULTADOS FINALES Y TABLA EN LA NUBE
   // ========================================================
-  private showResults(): void {
+  private async showResults(): Promise<void> {
     this.stopTimer();
     this.detachKeyListener();
 
+    this.container.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px;">
+        <div class="chocolate-icon" style="font-size: 54px; margin-bottom: 16px;">⏳</div>
+        <h2>Guardando tu puntuación en la nube…</h2>
+        <p style="opacity: 0.8;">Sincronizando con la sesión <strong>${escapeHtml(this.sessionCode)}</strong></p>
+      </div>
+    `;
+
     const elapsedTotal = (performance.now() - this.quizStartTime) / 1000;
-    const { entry, rank, isLeader } = Leaderboard.addEntry({
+    const { entry, rank, isLeader } = await CloudSessionService.submitScore(this.sessionCode, {
       nombre: this.playerName,
       puntos: this.score,
       aciertos: this.correctCount,
@@ -357,8 +375,8 @@ export class ColiseoQuiz {
       tiempoTotal: elapsedTotal,
     });
 
-    const leader = Leaderboard.getLeader();
-    const allEntries = Leaderboard.getEntries();
+    const allEntries = await CloudSessionService.getScores(this.sessionCode);
+    const leader = allEntries[0];
 
     this.container.innerHTML = `
       <div class="results-hero">
@@ -369,10 +387,10 @@ export class ColiseoQuiz {
             isLeader
               ? `¡Increíble, <strong>${escapeHtml(
                   this.playerName,
-                )}</strong>! Estableciste la puntuación máxima de la clase. ¡El chocolate es tuyo!`
+                )}</strong>! Tienes el 1.er lugar en la sesión <strong>${escapeHtml(this.sessionCode)}</strong>. ¡El chocolate es tuyo!`
               : `Bien jugado, <strong>${escapeHtml(
                   this.playerName,
-                )}</strong>. Lograste el puesto <strong>#${rank}</strong> en la sesión.`
+                )}</strong>. Lograste el puesto <strong>#${rank}</strong> en la sesión <strong>${escapeHtml(this.sessionCode)}</strong>.`
           }
         </p>
 
@@ -399,7 +417,7 @@ export class ColiseoQuiz {
           !isLeader && leader
             ? `
           <div class="winner-callout">
-            <span>🍫 Líder actual por el chocolate: <strong>${escapeHtml(leader.nombre)}</strong> con <strong>${leader.puntos.toLocaleString()} pts</strong></span>
+            <span>🍫 Líder del chocolate: <strong>${escapeHtml(leader.nombre)}</strong> con <strong>${leader.puntos.toLocaleString()} pts</strong></span>
           </div>`
             : ''
         }
@@ -407,7 +425,7 @@ export class ColiseoQuiz {
 
       <div class="leaderboard-section">
         <div class="leaderboard-title">
-          <span>Tabla de Clasificación de la Sesión</span>
+          <span>Clasificación de la Sesión [${escapeHtml(this.sessionCode)}]</span>
           <span style="font-size: 13px; font-weight: normal; opacity: 0.8;">${allEntries.length} participantes</span>
         </div>
 
@@ -428,7 +446,7 @@ export class ColiseoQuiz {
                 .slice(0, 10)
                 .map((item, idx) => {
                   const esTop = idx === 0;
-                  const esActual = item.id === entry.id;
+                  const esActual = item.id === entry.id || (item.nombre === entry.nombre && item.puntos === entry.puntos);
                   let rankHtml = `${idx + 1}`;
                   if (idx === 0) rankHtml = `<span class="rank-badge rank-1">👑 1 🍫</span>`;
                   else if (idx === 1) rankHtml = `<span class="rank-badge rank-2">🥈 2</span>`;
@@ -449,10 +467,6 @@ export class ColiseoQuiz {
             </tbody>
           </table>
         </div>
-
-        <button type="button" id="btn-borrar-tabla" class="btn-clear-table">
-          Reiniciar tabla de sesión (docente)
-        </button>
       </div>
 
       <div class="actions" style="justify-content: space-between;">
@@ -475,29 +489,36 @@ export class ColiseoQuiz {
     this.container.querySelector('#btn-volver-ciudad')?.addEventListener('click', () => {
       this.close();
     });
-
-    this.container.querySelector('#btn-borrar-tabla')?.addEventListener('click', () => {
-      if (confirm('¿Deseas reiniciar la tabla de posiciones de la sesión?')) {
-        Leaderboard.clear();
-        this.showResults();
-      }
-    });
   }
 
   // ========================================================
   // PANTALLA 4: TABLA DE POSICIONES INDEPENDIENTE
   // ========================================================
-  showLeaderboardView(): void {
+  async showLeaderboardView(sessionCode = this.sessionCode): Promise<void> {
     this.stopTimer();
     this.detachKeyListener();
-    const allEntries = Leaderboard.getEntries();
-    const leader = Leaderboard.getLeader();
+    this.sessionCode = sessionCode;
 
     this.container.innerHTML = `
-      <div class="coliseo-header-badge">🏆 Clasificación General</div>
+      <div style="text-align: center; padding: 40px 20px;">
+        <div class="chocolate-icon" style="font-size: 54px; margin-bottom: 16px;">⏳</div>
+        <h2>Cargando tabla de la sesión ${escapeHtml(sessionCode)}…</h2>
+      </div>
+    `;
+    this.overlay.classList.remove('hidden');
+
+    const allEntries = await CloudSessionService.getScores(this.sessionCode);
+    const leader = allEntries[0];
+
+    this.container.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div class="coliseo-header-badge" style="margin: 0;">🏆 Clasificación de la Clase</div>
+        <div class="quiz-badge">Sesión: <span style="color: var(--gold);">${escapeHtml(this.sessionCode)}</span></div>
+      </div>
+
       <h1 class="coliseo-title">Tabla de la Sesión</h1>
       <p class="coliseo-lead">
-        Revisa las mejores puntuaciones de la clase. ¡Quien quede en 1.er lugar gana el chocolate!
+        Revisa las puntuaciones de tus compañeros en la sesión <strong>${escapeHtml(this.sessionCode)}</strong>. ¡El primer lugar se lleva el chocolate!
       </p>
 
       ${
@@ -528,7 +549,7 @@ export class ColiseoQuiz {
           <tbody>
             ${
               allEntries.length === 0
-                ? `<tr><td colspan="6" style="text-align: center; padding: 24px; opacity: 0.7;">Aún no hay puntuaciones registradas. ¡Sé el primero en entrar al Coliseo!</td></tr>`
+                ? `<tr><td colspan="6" style="text-align: center; padding: 24px; opacity: 0.7;">Aún no hay puntuaciones en la sesión "${escapeHtml(this.sessionCode)}". ¡Sé el primero en competir!</td></tr>`
                 : allEntries
                     .map((item, idx) => {
                       let rankHtml = `${idx + 1}`;
@@ -573,7 +594,7 @@ export class ColiseoQuiz {
     if (nuevo && nuevo.trim()) {
       const nombreLimpio = nuevo.trim();
       this.playerName = nombreLimpio;
-      this.options.onNewStudent?.(nombreLimpio);
+      this.options.onNewStudent?.(nombreLimpio, this.sessionCode);
       this.showWelcome();
     }
   }
