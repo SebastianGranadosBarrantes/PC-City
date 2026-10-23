@@ -12,6 +12,7 @@ export interface StartScreenOptions {
   creditos: CreditosData;
   /** Se llama con el nombre ya validado cuando el jugador presiona "Jugar". */
   onStart: (nombre: string) => void;
+  onShowLeaderboard?: () => void;
 }
 
 /** Pantalla de inicio (nombre + Jugar + Créditos) y la pantalla de créditos. */
@@ -54,6 +55,7 @@ export class StartScreen {
     this.input.addEventListener('input', () => this.ocultarError());
     this.find('#btn-creditos').addEventListener('click', () => this.mostrarPanel('creditos'));
     this.find('#btn-volver').addEventListener('click', () => this.mostrarPanel('inicio'));
+    this.find('#btn-tabla-inicio')?.addEventListener('click', () => options.onShowLeaderboard?.());
 
     this.input.focus();
   }

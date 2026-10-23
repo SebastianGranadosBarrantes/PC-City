@@ -1,0 +1,128 @@
+[
+  {
+    "id": "cpu",
+    "piezaId": "cpu",
+    "pregunta": "¿Cuál es la función primordial del Procesador (CPU) en la computadora?",
+    "opciones": [
+      "Almacenar archivos y fotos de manera permanente",
+      "Ejecutar las instrucciones de los programas y coordinar los componentes",
+      "Convertir la corriente alterna de la toma en corriente continua",
+      "Mostrar las imágenes en alta resolución en el monitor"
+    ],
+    "correcta": 1,
+    "explicacion": "El CPU es el cerebro del equipo: ejecuta las instrucciones y coordina todos los componentes. Su velocidad se mide en GHz.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "ram",
+    "piezaId": "ram",
+    "pregunta": "¿Qué precaución esencial debes tener al instalar un módulo de memoria RAM?",
+    "opciones": [
+      "Aplicar pasta térmica sobre los chips de memoria",
+      "Desfragmentarla antes de colocarla en la ranura",
+      "Apagar el equipo, no tocar los contactos dorados y presionar hasta que traben los seguros",
+      "Instalarla únicamente con la computadora encendida para verificar que funcione"
+    ],
+    "correcta": 2,
+    "explicacion": "Tocar los contactos dorados puede dañarla por grasa o estática. Se instala apagado y presionando hasta oír el clic de los seguros.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "placa",
+    "piezaId": "placa",
+    "pregunta": "Si la computadora pierde la fecha, la hora y la configuración del BIOS al apagarse, ¿qué elemento debe revisarse?",
+    "opciones": [
+      "La batería (pila) de la placa madre",
+      "El conector del cable SATA del disco",
+      "La pasta térmica del procesador",
+      "El interruptor de la fuente de poder"
+    ],
+    "correcta": 0,
+    "explicacion": "La batería de la placa madre (pila de botón) mantiene alimentada la memoria que guarda la hora y configuración del BIOS cuando no hay energía.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "gpu",
+    "piezaId": "gpu",
+    "pregunta": "¿Por qué la tarjeta gráfica (GPU) es clave para videojuegos y edición de video?",
+    "opciones": [
+      "Porque suministra electricidad a la placa madre",
+      "Porque procesa imágenes y gráficos con su propio chip y memoria dedicada",
+      "Porque sustituye a la memoria RAM del sistema",
+      "Porque se encarga de expulsar el calor de todo el gabinete"
+    ],
+    "correcta": 1,
+    "explicacion": "La GPU está especializada en procesamiento gráfico masivo y cuenta con memoria VRAM y ventilación propias.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "almacenamiento_hdd",
+    "piezaId": "almacenamiento_hdd",
+    "pregunta": "¿Qué cuidado específico requiere un disco duro tradicional (HDD) por tener partes mecánicas móviles?",
+    "opciones": [
+      "No debe golpearse ni moverse bruscamente mientras está encendido",
+      "Debe sumergirse en líquido refrigerante una vez al año",
+      "Debe abrirse para limpiar sus platos magnéticos con un paño seco",
+      "No admite hacer copias de seguridad de los archivos"
+    ],
+    "correcta": 0,
+    "explicacion": "Los HDD tienen platos giratorios y cabezales a micras de distancia; cualquier golpe mientras giran puede rayar los discos y causar pérdida total de datos.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "almacenamiento_ssd",
+    "piezaId": "almacenamiento_ssd",
+    "pregunta": "Respecto a los discos de estado sólido (SSD), ¿cuál de las siguientes afirmaciones es CORRECTA?",
+    "opciones": [
+      "Deben desfragmentarse semanalmente para no perder velocidad",
+      "Tienen piezas mecánicas que giran más rápido que las de un HDD",
+      "No se deben desfragmentar; usan memoria flash y la desfragmentación desgasta su vida útil",
+      "Solo pueden guardar el sistema operativo y no admiten programas"
+    ],
+    "correcta": 2,
+    "explicacion": "Al no tener partes mecánicas, el acceso es instantáneo en cualquier celda. Desfragmentar un SSD solo genera escrituras innecesarias que acortan su vida útil.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "fuente",
+    "piezaId": "fuente",
+    "pregunta": "¿Por qué NUNCA se debe abrir una fuente de poder para limpiarla por dentro?",
+    "opciones": [
+      "Porque se borra la clave de Windows",
+      "Porque sus capacitores pueden retener alto voltaje peligroso incluso desconectada",
+      "Porque los cables se descalibran con el oxígeno del aire",
+      "Porque pierde la garantía de la pantalla del monitor"
+    ],
+    "correcta": 1,
+    "explicacion": "Los capacitores de alta capacidad pueden almacenar descargas eléctricas mortales o muy peligrosas aun cuando la fuente esté desenchufada.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "cooler",
+    "piezaId": "cooler",
+    "pregunta": "Al limpiar el ventilador del disipador de la CPU con aire comprimido, ¿qué práctica es indispensable?",
+    "opciones": [
+      "Hacerlo girar a máxima velocidad para botar más polvo",
+      "Sujetar las aspas para que no giren sin control y no dañen el rodamiento",
+      "Rociarle agua con jabón mientras el ventilador está girando",
+      "Retirar el ventilador permanentemente y dejar solo el metal"
+    ],
+    "correcta": 1,
+    "explicacion": "El aire a presión puede forzar el ventilador más allá de su velocidad de diseño, dañando el rodamiento o induciendo corrientes eléctricas indeseadas.",
+    "tiempoSegundos": 15
+  },
+  {
+    "id": "case",
+    "piezaId": "case",
+    "pregunta": "Además de proteger los componentes, ¿cuál es una función esencial del gabinete (case) y su mantenimiento?",
+    "opciones": [
+      "Aislar el calor para que no salga hacia la habitación",
+      "Organizar el flujo de aire y requerir limpieza periódica de sus filtros de polvo",
+      "Evitar que la computadora se conecte a redes inalámbricas no deseadas",
+      "Aumentar el peso para que el procesador trabaje más rápido"
+    ],
+    "correcta": 1,
+    "explicacion": "El gabinete diseña túneles de viento para extraer calor; limpiar filtros y ordenar cables garantiza que el aire fresco circule adecuadamente.",
+    "tiempoSegundos": 15
+  }
+]

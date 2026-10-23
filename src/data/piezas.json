@@ -5,7 +5,8 @@
     "descripcion": "Es el cerebro del computador: ejecuta las instrucciones de los programas y coordina el trabajo de los demás componentes. Su rendimiento depende de la cantidad de núcleos y de su velocidad, medida en GHz.",
     "mantenimiento": "Si se retira el disipador, hay que limpiar la pasta térmica vieja y aplicar nueva. Una temperatura que sube sin motivo suele indicar polvo o pasta seca.",
     "x": -55, "z": -52, "ancho": 14, "alto": 8, "fondo": 14,
-    "filePath": "assets/models/parts/cpu.glb"
+    "filePath": "assets/models/parts/cpu.glb",
+    "rotacion": { "y": 180 }
   },
   {
     "id": "ram",
@@ -13,7 +14,8 @@
     "descripcion": "Es la memoria de trabajo: guarda temporalmente los datos y programas que se están usando, porque es mucho más rápida que el disco. Su contenido se borra al apagar el equipo.",
     "mantenimiento": "Instálala con el equipo apagado y desconectado, sin tocar los contactos dorados, y presiona hasta que los seguros laterales cierren. Una RAM mal asentada puede impedir que el equipo encienda.",
     "x": -85, "z": -11, "ancho": 18, "alto": 24, "fondo": 5,
-    "filePath": "assets/models/parts/ram.glb"
+    "filePath": "assets/models/parts/ram.glb",
+    "rotacion": { "y": 180 }
   },
   {
     "id": "placa",
@@ -22,7 +24,7 @@
     "mantenimiento": "Límpiala con brocha antiestática o aire comprimido, sin humedad. Si el equipo pierde la fecha y la hora o la configuración del BIOS, revisa la batería de la placa.",
     "x": -91, "z": 42, "ancho": 16, "alto": 16, "fondo": 16,
     "filePath": "assets/models/parts/motherboard.glb",
-    "rotacion": { "x": 90 }
+    "rotacion": { "x": 90, "y": -90 }
   },
   {
     "id": "gpu",

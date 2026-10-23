@@ -1,5 +1,6 @@
 import './style.css';
 import './styles/screens.css';
+import './styles/coliseo.css';
 import * as THREE from 'three';
 import piezasJson from './data/piezas.json';
 import creditosJson from './data/creditos.json';
@@ -15,6 +16,7 @@ import { pushOutOfBox } from './world/colliders';
 import { Hud } from './ui/hud';
 import { Popup } from './ui/popup';
 import { StartScreen } from './ui/startScreen';
+import { ColiseoQuiz } from './ui/coliseoQuiz';
 
 const piezas: PiezaData[] = piezasJson;
 
@@ -53,6 +55,13 @@ const popup = new Popup();
 const session = new Session();
 const progress = new Progress(piezas.map((p) => p.id));
 
+const coliseoQuiz = new ColiseoQuiz({
+  onNewStudent: (nuevoNombre) => {
+    session.iniciar(nuevoNombre);
+    hud.setPlayerName(session.nombre);
+  },
+});
+
 // La pantalla de inicio se muestra YA, mientras la ciudad se carga detrás.
 const startScreen = new StartScreen({
   creditos: creditosJson,
@@ -64,6 +73,9 @@ const startScreen = new StartScreen({
     chase.snap(); // la cámara pasa de golpe a ir detrás del carro
     estado = 'jugando';
   },
+  onShowLeaderboard: () => {
+    coliseoQuiz.showLeaderboardView();
+  },
 });
 
 function refreshProgress(): void {
@@ -73,7 +85,7 @@ progress.subscribe(refreshProgress);
 refreshProgress();
 
 const faltan = (n: number) => (n === 1 ? 'te falta 1 pieza' : `te faltan ${n} piezas por descubrir`);
-  const carModel = loadCarModel();
+const carModel = loadCarModel();
 
 // ---------- Mundo ----------
 const city = await buildCity(scene, piezas, {
@@ -81,18 +93,20 @@ const city = await buildCity(scene, piezas, {
     const estabaCompleto = progress.isComplete;
     progress.visit(pieza.id);
     popup.showPieza(pieza);
-    if (!estabaCompleto && progress.isComplete) hud.toast('¡Autódromo desbloqueado!');
+    if (!estabaCompleto && progress.isComplete) {
+      hud.toast('¡Coliseo desbloqueado! Dirígete al norte 🏛️');
+    }
   },
   onAutodromo: () => {
     if (!progress.isComplete) {
       popup.show('Coliseo bloqueado', `Primero visita todas las piezas de la ciudad: ${faltan(progress.missing)}.`);
       return;
     }
-    popup.show('Coliseo', 'Aquí va a empezar el quiz. Por ahora es solo una prueba de la interacción.');
+    coliseoQuiz.open(session.nombre);
   },
   autodromoPrompt: () =>
     progress.isComplete
-      ? 'Presiona E para entrar al coliseo'
+      ? 'Presiona E para entrar al Coliseo y jugar el Desafío 🍫'
       : `Coliseo bloqueado: ${faltan(progress.missing)}`,
 });
 
@@ -139,8 +153,8 @@ function orbitarCiudad(time: number): void {
 }
 
 function actualizarJuego(dt: number): void {
-  // Con el popup abierto el carro no recibe órdenes (se frena solo).
-  const frozen = popup.isOpen;
+  // Con el popup o el coliseo abierto el carro no recibe órdenes (se frena solo).
+  const frozen = popup.isOpen || coliseoQuiz.isOpen;
   car.update(dt, frozen ? 0 : input.throttle, frozen ? 0 : input.steer);
 
   for (const box of city.colliders) {
@@ -148,9 +162,9 @@ function actualizarJuego(dt: number): void {
   }
   keepInsideWorld();
 
-  if (popup.isOpen) {
+  if (popup.isOpen || coliseoQuiz.isOpen) {
     hud.hidePrompt();
-    if (input.wasPressed('KeyE') || input.wasPressed('Escape')) popup.close();
+    if (popup.isOpen && (input.wasPressed('KeyE') || input.wasPressed('Escape'))) popup.close();
   } else {
     const nearest = findNearest(city.interactables);
     if (nearest) {
