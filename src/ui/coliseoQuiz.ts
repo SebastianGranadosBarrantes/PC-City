@@ -1,4 +1,5 @@
 import preguntasJson from '../data/preguntas.json';
+import piezasJson from '../data/piezas.json';
 import { CloudSessionService } from '../core/cloudSession';
 
 export interface PreguntaData {
@@ -25,7 +26,7 @@ const SHAPES = [
 export class ColiseoQuiz {
   private readonly overlay: HTMLDivElement;
   private readonly container: HTMLDivElement;
-  private readonly preguntas: PreguntaData[] = preguntasJson;
+  private preguntas: PreguntaData[] = [];
   private readonly options: ColiseoQuizOptions;
 
   private playerName = 'Estudiante';
@@ -46,6 +47,7 @@ export class ColiseoQuiz {
 
   constructor(options: ColiseoQuizOptions = {}) {
     this.options = options;
+    this.preguntas = this.pickQuestions();
 
     this.overlay = document.createElement('div');
     this.overlay.className = 'coliseo-overlay hidden';
@@ -55,6 +57,28 @@ export class ColiseoQuiz {
     this.overlay.appendChild(this.container);
 
     document.body.appendChild(this.overlay);
+  }
+
+  /**
+   * Selecciona aleatoriamente 1 pregunta por cada componente (de entre sus opciones disponibles),
+   * asegurando que cada estudiante tenga una evaluación variada con cobertura completa de las 9 piezas.
+   */
+  private pickQuestions(): PreguntaData[] {
+    const porComponente = new Map<string, PreguntaData[]>();
+    for (const q of preguntasJson as PreguntaData[]) {
+      const list = porComponente.get(q.piezaId) ?? [];
+      list.push(q);
+      porComponente.set(q.piezaId, list);
+    }
+
+    const seleccionadas: PreguntaData[] = [];
+    for (const [, pool] of porComponente) {
+      if (pool.length > 0) {
+        const randomIndex = Math.floor(Math.random() * pool.length);
+        seleccionadas.push(pool[randomIndex]);
+      }
+    }
+    return seleccionadas;
   }
 
   get isOpen(): boolean {
@@ -178,6 +202,8 @@ export class ColiseoQuiz {
   // PANTALLA 2: PREGUNTA ACTIVA
   // ========================================================
   private startQuiz(): void {
+    // Al comenzar, seleccionamos una pregunta aleatoria de cada componente
+    this.preguntas = this.pickQuestions();
     this.currentQuestion = 0;
     this.score = 0;
     this.streak = 0;
@@ -197,9 +223,12 @@ export class ColiseoQuiz {
     this.questionDuration = q.tiempoSegundos || 15;
     this.questionActive = true;
 
+    const pieza = (piezasJson as { id: string; nombre: string }[]).find((p) => p.id === q.piezaId);
+    const piezaNombre = pieza ? pieza.nombre : q.piezaId;
+
     this.container.innerHTML = `
       <div class="quiz-top-bar">
-        <div class="quiz-badge">Pregunta ${index + 1} de ${this.preguntas.length}</div>
+        <div class="quiz-badge">Pregunta ${index + 1} de ${this.preguntas.length} • <span style="color: var(--gold);">${escapeHtml(piezaNombre)}</span></div>
         <div class="quiz-score-badge">Puntos: <span id="quiz-score-num">${this.score.toLocaleString()}</span></div>
         ${this.streak > 1 ? `<div class="quiz-streak-badge">🔥 Racha x${this.streak}</div>` : ''}
       </div>

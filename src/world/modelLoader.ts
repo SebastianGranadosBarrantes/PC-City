@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import type { Rotacion } from "../types";
 
 export interface Size {
@@ -13,6 +14,13 @@ export interface FittedModel {
   size: THREE.Vector3; // tamaño real que quedó
 }
 
+// Configurar DRACOLoader para modelos con compresión KHR_draco_mesh_compression
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath(`${import.meta.env.BASE_URL}draco/gltf/`);
+
+const loader = new GLTFLoader();
+loader.setDRACOLoader(dracoLoader);
+
 export async function loadFittedModel(
   filePath: string,
   target: Size,
@@ -22,14 +30,11 @@ export async function loadFittedModel(
   return fitToSize(gltf.scene, target, rotacion);
 }
 
-const loader = new GLTFLoader();
-
 export function fitToSize(
   model: THREE.Object3D,
   target: Size,
   rotacion?: Rotacion,
 ): FittedModel {
-    console.log('rotacion recibida:', rotacion);
   // Primero se rota y después se mide, así el ajuste trabaja con la forma ya orientada.
   if (rotacion) {
     model.rotation.order = "YXZ"; // z y x levantan, y gira al final sobre el eje vertical

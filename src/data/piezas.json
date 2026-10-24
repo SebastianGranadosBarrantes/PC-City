@@ -1,80 +1,131 @@
+
 [
   {
     "id": "cpu",
     "nombre": "Procesador (CPU)",
-    "descripcion": "Es el cerebro de la computadora: ejecuta las instrucciones de los programas y coordina el trabajo de los demás componentes. Su rendimiento depende de la cantidad de núcleos y de su velocidad, medida en GHz.",
-    "mantenimiento": "Si se retira el disipador, hay que limpiar la pasta térmica vieja y aplicar nueva. Una temperatura que sube sin motivo suele indicar polvo o pasta seca. Para instalarlo, alinea los triangulos de la CPU y el socket, y baja la bandeja con cuidado. Nunca toques los pines del procesador.",
-    "x": -55, "z": -52, "ancho": 14, "alto": 8, "fondo": 14,
+    "descripcion": "Es el componente que ejecuta las instrucciones de los programas, realiza operaciones y coordina gran parte del trabajo de la computadora. Su rendimiento depende de factores como la arquitectura, la cantidad de núcleos, la frecuencia y la capacidad de refrigeración.",
+    "mantenimiento": "Mantén limpio el sistema de refrigeración y vigila las temperaturas del procesador. Si retiras el disipador, limpia la pasta térmica anterior y aplica una nueva siguiendo las indicaciones del fabricante. Al instalar la CPU, alinea las marcas de orientación y nunca la fuerces. Evita tocar los pines o contactos.",
+    "x": -55,
+    "z": -52,
+    "ancho": 14,
+    "alto": 8,
+    "fondo": 14,
     "filePath": "assets/models/parts/cpu.glb",
-    "rotacion": { "y": 180 }
+    "rotacion": {
+      "y": 180
+    }
   },
   {
     "id": "ram",
     "nombre": "Memoria RAM",
-    "descripcion": "Es la memoria de trabajo: guarda temporalmente los datos y programas que se están usando, porque es mucho más rápida que el almacenamiento principal. Su contenido es volátil, se borra al apagar el equipo.",
-    "mantenimiento": "Instálala con el equipo apagado y desconectado, sin tocar los contactos dorados, y presiona hasta que los seguros laterales cierren. Una RAM mal asentada puede impedir que el equipo encienda. Una ram con los contactos sucios puede provocar que el equipo no arranque o se reinicie. Límpiala con aire comprimido, limpia los contactos con borrador.",
-    "x": -85, "z": -11, "ancho": 18, "alto": 24, "fondo": 5,
+    "descripcion": "Es la memoria de trabajo que almacena temporalmente los datos y programas que se están utilizando. Permite que el procesador acceda rápidamente a la información necesaria. Es volátil, por lo que pierde su contenido al interrumpirse la alimentación eléctrica.",
+    "mantenimiento": "Antes de instalar o retirar un módulo, apaga y desconecta el equipo y toma precauciones contra descargas electrostáticas. No toques los contactos dorados. Alinea la muesca con la ranura y presiona uniformemente hasta que los seguros queden correctamente cerrados. Si necesitas limpiarla, utiliza métodos apropiados para componentes electrónicos y evita productos que dejen residuos.",
+    "x": -85,
+    "z": -11,
+    "ancho": 18,
+    "alto": 24,
+    "fondo": 5,
     "filePath": "assets/models/parts/ram.glb",
-    "rotacion": { "y": 180 }
+    "rotacion": {
+      "y": 180
+    }
   },
   {
     "id": "placa",
     "nombre": "Placa madre",
-    "descripcion": "Es la tarjeta principal donde se conectan el procesador, la RAM, el almacenamiento y los demás componentes. Lleva los circuitos que permiten que todos los componentes se comuniquen.",
-    "mantenimiento": "Límpiala con brocha antiestática o aire comprimido, sin humedad. Si el equipo pierde la fecha y la hora o la configuración del BIOS, revisa la batería CMOS de la placa.",
-    "x": -91, "z": 42, "ancho": 16, "alto": 16, "fondo": 16,
+    "descripcion": "Es la tarjeta principal de la computadora. Contiene los circuitos y conexiones que permiten la comunicación entre el procesador, la memoria RAM, el almacenamiento, la tarjeta gráfica y otros dispositivos. Su modelo determina buena parte de la compatibilidad del equipo.",
+    "mantenimiento": "Desconecta el equipo antes de realizar cualquier limpieza. Retira el polvo con aire comprimido utilizado correctamente o herramientas antiestáticas apropiadas. Evita la humedad, los objetos metálicos y las descargas electrostáticas. Si el equipo pierde la fecha y la hora o ciertos ajustes del firmware, comprueba la batería CMOS siguiendo las instrucciones del fabricante.",
+    "x": -91,
+    "z": 42,
+    "ancho": 16,
+    "alto": 16,
+    "fondo": 16,
     "filePath": "assets/models/parts/motherboard.glb",
-    "rotacion": { "x": 90, "y": -90 }
+    "rotacion": {
+      "x": 90,
+      "y": -90
+    }
   },
   {
     "id": "gpu",
     "nombre": "Tarjeta gráfica (GPU)",
-    "descripcion": "Procesa las imágenes que se ven en pantalla. Es clave para videojuegos, diseño y edición de video, y tiene su propia memoria y su propio sistema de enfriamiento.",
-    "mantenimiento": "Limpia el polvo de sus ventiladores y disipador, verifica que el cable de alimentación esté bien conectado y mantén actualizados los controladores.",
-    "x": 14, "z": -48, "ancho": 12, "alto": 12, "fondo": 12,
+    "descripcion": "Procesa operaciones gráficas y genera los datos visuales que se muestran en pantalla. Es importante para videojuegos, modelado 3D, diseño y edición de video. Una tarjeta gráfica dedicada normalmente dispone de memoria VRAM y de un sistema de refrigeración propios.",
+    "mantenimiento": "Limpia periódicamente el polvo de los ventiladores y del disipador con el equipo apagado y desconectado. Evita que las aspas giren excesivamente durante la limpieza. Comprueba que la tarjeta esté correctamente instalada y que sus conectores de alimentación estén bien colocados. Mantén los controladores actualizados cuando sea necesario.",
+    "x": 14,
+    "z": -48,
+    "ancho": 12,
+    "alto": 12,
+    "fondo": 12,
     "filePath": "assets/models/parts/gpu.glb"
   },
   {
     "id": "almacenamiento_hdd",
     "nombre": "Almacenamiento (HDD)",
-    "descripcion": "Guarda de forma permanente el sistema operativo, los programas y los archivos. El HDD usa discos que giran, tiende a ser más lento y ruidoso, pero es más barato y ofrece más capacidad de almacenamiento que un SSD.",
-    "mantenimiento": "Haz respaldos periódicos. Un HDD no debe golpearse ni moverse mientras está encendido, el HDD se beneficia de la desfragmentación. La longevidad de un HDD puede mejorar si se implementa un RAID o se combina con un SSD para el sistema operativo.",
-    "x": -45, "z": 69, "ancho": 14, "alto": 6, "fondo": 20,
+    "descripcion": "Es una unidad de almacenamiento permanente que guarda el sistema operativo, los programas y los archivos. Utiliza platos magnéticos giratorios y cabezales de lectura y escritura. Suele ofrecer una buena relación entre capacidad y precio, aunque normalmente tiene mayores tiempos de acceso que un SSD.",
+    "mantenimiento": "Realiza copias de seguridad periódicas y vigila los avisos de diagnóstico y los ruidos inusuales. Evita golpes y movimientos bruscos, especialmente mientras la unidad está funcionando. En los HDD, la desfragmentación puede ayudar en determinadas situaciones, aunque los sistemas operativos modernos suelen gestionar esta tarea automáticamente. No abras la unidad para limpiarla.",
+    "x": -45,
+    "z": 69,
+    "ancho": 14,
+    "alto": 6,
+    "fondo": 20,
     "filePath": "assets/models/parts/hdd.glb",
-    "rotacion": { "x": 90 }
+    "rotacion": {
+      "x": 90
+    }
   },
   {
     "id": "almacenamiento_ssd",
     "nombre": "Almacenamiento (SSD)",
-    "descripcion": "Guarda de forma permanente el sistema operativo, los programas y los archivos. El SSD usa memoria flash, sin partes móviles, y es mucho más rápido. Hoy en día, la mayoría de los equipos usan SSD en lugar de HDD.",
-    "mantenimiento": "Haz respaldos periódicos. El SSD no se beneficia de la desfragmentación; no es necesario hacerlo. Evita apagar el equipo mientras se están escribiendo datos en el SSD. La vida útil de un SSD es limitada, pero hoy en día es suficiente para la mayoría de los usuarios.",
-    "x": 82, "z": 18, "ancho": 14, "alto": 6, "fondo": 20,
+    "descripcion": "Es una unidad de almacenamiento permanente que utiliza memoria flash para guardar el sistema operativo, los programas y los archivos. No tiene platos giratorios ni cabezales mecánicos, por lo que ofrece tiempos de acceso reducidos y funciona de manera silenciosa. Existen formatos como SATA de 2,5 pulgadas y M.2 con distintas interfaces.",
+    "mantenimiento": "Realiza copias de seguridad periódicas y utiliza las herramientas de diagnóstico del fabricante cuando sea necesario. No requiere desfragmentación manual habitual; permite que el sistema operativo gestione las optimizaciones compatibles, como TRIM. Comprueba la compatibilidad de la interfaz y el formato antes de instalar una unidad nueva y evita interrumpir operaciones de escritura de forma innecesaria.",
+    "x": 82,
+    "z": 18,
+    "ancho": 14,
+    "alto": 6,
+    "fondo": 20,
     "filePath": "assets/models/parts/ssd_m2.glb",
-    "rotacion": { "x": 90, "y": 180 }
+    "rotacion": {
+      "x": 90,
+      "y": 180
+    }
   },
   {
     "id": "fuente",
     "nombre": "Fuente de poder",
-    "descripcion": "Convierte la corriente alterna del toma corriente en corriente continua de bajo voltaje y la reparte a todos los componentes.",
-    "mantenimiento": "En la medida de lo posible debe evitarse abrirla: sus capacitores pueden conservar carga aunque esté desconectada. Mantén limpias sus rejillas de ventilación. Una fuente defectuosa puede causar que el equipo no encienda o se apague de forma inesperada.",
-    "x": 55, "z": 72, "ancho": 14, "alto": 14, "fondo": 14,
+    "descripcion": "Convierte la corriente alterna de la toma eléctrica en distintas salidas de corriente continua que utilizan los componentes de la computadora. Una fuente adecuada debe ofrecer potencia suficiente, conectores compatibles y características de seguridad y calidad apropiadas.",
+    "mantenimiento": "Mantén limpias las rejillas de ventilación y evita obstruir la entrada y salida de aire. Apaga y desconecta el equipo antes de limpiar las superficies externas. No abras la fuente de poder sin la capacitación adecuada, ya que sus capacitores pueden conservar voltajes peligrosos incluso después de desconectarla. Si presenta olor a quemado, ruidos anormales o apagados inesperados, solicita una revisión técnica.",
+    "x": 55,
+    "z": 72,
+    "ancho": 14,
+    "alto": 14,
+    "fondo": 14,
     "filePath": "assets/models/parts/psu.glb"
   },
   {
     "id": "cooler",
     "nombre": "Disipador (cooler)",
-    "descripcion": "Extrae el calor del procesador. Existen disipadores por aire y por líquido; en ambos casos, un bloque de metal absorbe el calor y un ventilador lo expulsa. Sin enfriamiento, el procesador reduce su velocidad o se apaga para protegerse.",
-    "mantenimiento": "Quita el polvo con aire comprimido, sujetando las aspas para que no giren de más. Renueva la pasta térmica cuando retires el disipador. Un disipador mal instalado puede impedir que el equipo encienda o que el procesador se sobrecaliente.",
-    "x": 55, "z": -53, "ancho": 12, "alto": 12, "fondo": 12,
+    "descripcion": "Ayuda a extraer el calor del procesador y transferirlo al aire o a un líquido refrigerante, según el tipo de sistema. Los disipadores por aire utilizan superficies metálicas y normalmente ventiladores. Una refrigeración adecuada permite mantener temperaturas de funcionamiento seguras y evitar la reducción del rendimiento por exceso de calor.",
+    "mantenimiento": "Retira periódicamente el polvo del ventilador y del disipador con el equipo apagado y desconectado. Sujeta las aspas durante la limpieza para evitar que giren a velocidades excesivas. Si retiras el disipador del procesador, limpia la pasta térmica anterior y aplica una nueva según las instrucciones del fabricante. Después de instalarlo, verifica que esté bien sujeto y que el ventilador esté conectado.",
+    "x": 55,
+    "z": -53,
+    "ancho": 12,
+    "alto": 12,
+    "fondo": 12,
     "filePath": "assets/models/parts/cpu_cooler.glb"
   },
   {
     "id": "case",
     "nombre": "Gabinete (case)",
-    "descripcion": "Es la estructura que aloja y protege los componentes. Además de sostenerlos, organiza el flujo de aire que mantiene fresco el equipo.",
-    "mantenimiento": "Limpia los filtros de polvo con regularidad y ordena los cables para que no estorben el flujo de aire.",
-    "x": 18, "z": 102, "ancho": 20, "alto": 24, "fondo": 20,
+    "descripcion": "Es la estructura que aloja y protege los componentes internos de la computadora. Facilita su instalación, ayuda a organizar los cables y permite establecer un flujo de aire para controlar las temperaturas. Su tamaño y diseño determinan qué placas, unidades, tarjetas y sistemas de refrigeración pueden instalarse.",
+    "mantenimiento": "Limpia periódicamente los filtros de polvo y las rejillas de ventilación. Antes de limpiar el interior, apaga y desconecta el equipo. Organiza los cables sin bloquear los ventiladores y comprueba que las entradas y salidas de aire estén despejadas. Al instalar una placa madre, utiliza los separadores adecuados para el formato correspondiente y evita que la tarjeta entre en contacto directo con el gabinete donde no corresponde.",
+    "x": 18,
+    "z": 102,
+    "ancho": 20,
+    "alto": 24,
+    "fondo": 20,
     "filePath": "assets/models/parts/pc_case.glb",
-    "rotacion": { "y": 90 }
+    "rotacion": {
+      "y": 90
+    }
   }
 ]
