@@ -106,3 +106,111 @@ body { background: #d96843; }
 }
 .hud-player-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
 .hud-player-name { font-size: 18px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---- Barra de salud verde del vehículo ---- */
+.hud-health-card {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 170px;
+}
+
+.hud-health-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #a7f3d0;
+}
+
+.hud-health-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hud-health-value {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: #00e676; /* Verde eléctrico */
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.45);
+}
+
+.hud-health-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(3, 14, 13, 0.95);
+  border: 1px solid rgba(0, 230, 118, 0.5);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+.hud-health-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #00e676 100%); /* Verde puro y vibrante */
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.7);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto de destello de impacto en la tarjeta */
+.hud-player.damage-flash {
+  border-color: #ef4444;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.75);
+}
+
+/* Efecto de destello verde de recarga en la tarjeta */
+.hud-player.heal-flash {
+  border-color: #00e676;
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.85);
+  animation: heal-pulse 0.5s ease-out;
+}
+
+@keyframes heal-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Viñeta de daño en pantalla */
+.damage-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  box-shadow: inset 0 0 65px rgba(239, 68, 68, 0.55);
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+.damage-vignette.active {
+  opacity: 1;
+}
+
+/* Overlay de reparación del vehículo */
+.repair-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25;
+  background: rgba(10, 32, 30, 0.88);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.repair-overlay.active {
+  opacity: 1;
+}

@@ -14,6 +14,8 @@ import { Car } from './entities/car';
 import { loadCarModel } from './entities/carModel';
 import { buildCity, WORLD_HALF } from './world/city';
 import { pushOutOfBox } from './world/colliders';
+import { TrafficSystem } from './world/traffic';
+import { PlayerHealth, VEHICLE_CRASH_DAMAGE } from './core/playerHealth';
 import { Hud } from './ui/hud';
 import { Popup } from './ui/popup';
 import { StartScreen } from './ui/startScreen';
@@ -92,14 +94,55 @@ refreshProgress();
 const faltan = (n: number) => (n === 1 ? 'te falta 1 pieza' : `te faltan ${n} piezas por descubrir`);
 const carModel = loadCarModel();
 
+// ---------- Jugador ----------
+const car = new Car(await carModel);
+scene.add(car.object);
+const chase = new ChaseCamera(camera, car.object);
+
+// ---------- Salud e Integridad del Vehículo ----------
+const playerHealth = new PlayerHealth({
+  maxHealth: 100,
+  onHealthChanged: (_current, _max, pct) => {
+    hud.setHealth(pct);
+  },
+  onDamage: () => {
+    hud.triggerDamageFlash();
+  },
+  onDeath: () => {
+    hud.showRepairEffect();
+    hud.toast('🛠️ ¡Vehículo averiado! Ha sido reparado y remolcado a la avenida central.', 4500);
+    car.teleport(0, 20, 0); // Reubicar en la avenida central
+    playerHealth.healFull();
+  },
+});
+
+// ---------- Tráfico Urbano ----------
+const traffic = new TrafficSystem(scene);
+
 // ---------- Mundo ----------
 const city = await buildCity(scene, piezas, {
   onPieza: (pieza) => {
     const estabaCompleto = progress.isComplete;
     progress.visit(pieza.id);
     popup.showPieza(pieza);
+
+    // Recargar vida del vehículo si está baja (recupera lo equivalente al golpe de un vehículo)
+    let seRecargo = false;
+    if (playerHealth.health < playerHealth.maxHealth) {
+      seRecargo = playerHealth.heal(VEHICLE_CRASH_DAMAGE);
+      if (seRecargo) {
+        hud.triggerHealFlash();
+      }
+    }
+
     if (!estabaCompleto && progress.isComplete) {
-      hud.toast('¡Coliseo desbloqueado! Ve a probar tu conocimiento en el Desafío 🍫', 5000);
+      if (seRecargo) {
+        hud.toast(`¡Coliseo desbloqueado! 🍫 Y auto recargado (+${VEHICLE_CRASH_DAMAGE}% salud) 🔋`, 5000);
+      } else {
+        hud.toast('¡Coliseo desbloqueado! Ve a probar tu conocimiento en el Desafío 🍫', 5000);
+      }
+    } else if (seRecargo) {
+      hud.toast(`🔋 ¡${pieza.nombre} inspeccionado! Salud recargada (+${VEHICLE_CRASH_DAMAGE}%)`, 3500);
     }
   },
   onAutodromo: () => {
@@ -120,11 +163,6 @@ const city = await buildCity(scene, piezas, {
   },
 });
 
-// ---------- Jugador ----------
-const car = new Car(await carModel);
-scene.add(car.object);
-const chase = new ChaseCamera(camera, car.object);
-
 startScreen.setReady(); // ya se puede jugar
 
 // ---------- Utilidades del bucle ----------
@@ -138,6 +176,9 @@ function keepInsideWorld(): void {
     p.x = x;
     p.z = z;
     car.bump();
+    if (estado === 'jugando') {
+      playerHealth.applyDamage(15);
+    }
   }
 }
 
@@ -167,10 +208,41 @@ function actualizarJuego(dt: number): void {
   const frozen = popup.isOpen || coliseoQuiz.isOpen || teacherPanel.isOpen;
   car.update(dt, frozen ? 0 : input.throttle, frozen ? 0 : input.steer);
 
+  // Actualizar salud e inmunidad del jugador (parpadeo visual al recibir daño)
+  playerHealth.update(dt);
+  if (playerHealth.isInvulnerable) {
+    const visible = Math.floor(performance.now() / 90) % 2 === 0;
+    car.setBlink(visible);
+  } else {
+    car.setBlink(true);
+  }
+
+  // Colisiones con edificios y objetos del escenario
   for (const box of city.colliders) {
-    if (pushOutOfBox(car.position, car.radius, box)) car.bump();
+    if (pushOutOfBox(car.position, car.radius, box)) {
+      car.bump();
+      if (!frozen) {
+        const speedFactor = Math.abs(car.speedVal) / car.maxSpeed;
+        const damage = Math.round(10 + 16 * speedFactor);
+        playerHealth.applyDamage(damage);
+      }
+    }
   }
   keepInsideWorld();
+
+  // Actualizar tráfico urbano y gestionar choques con autos NPC
+  traffic.update(
+    dt,
+    car.position,
+    car.radius,
+    () => {
+      car.bump();
+      if (!frozen) {
+        playerHealth.applyDamage(VEHICLE_CRASH_DAMAGE);
+      }
+    },
+    frozen,
+  );
 
   if (popup.isOpen || coliseoQuiz.isOpen || teacherPanel.isOpen) {
     hud.hidePrompt();
@@ -194,8 +266,13 @@ renderer.setAnimationLoop((time) => {
   const dt = Math.min((time - last) / 1000, 0.05); // evita saltos al volver a la pestaña
   last = time;
 
-  if (estado === 'inicio') orbitarCiudad(time);
-  else actualizarJuego(dt);
+  if (estado === 'inicio') {
+    orbitarCiudad(time);
+    // En la pantalla de inicio, el tráfico sigue circulando para dar vida a la ciudad
+    traffic.update(dt, car.position, car.radius, undefined, false);
+  } else {
+    actualizarJuego(dt);
+  }
 
   renderer.render(scene, camera);
   input.endFrame();

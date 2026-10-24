@@ -42,9 +42,28 @@ export class Car {
     this.object.rotation.y = this.heading;
   }
 
+  get speedVal(): number {
+    return this.speed;
+  }
+
   /** Se llama al chocar: pierde la mayor parte de la velocidad. */
   bump(): void {
     this.speed *= 0.3;
+  }
+
+  stop(): void {
+    this.speed = 0;
+  }
+
+  teleport(x: number, z: number, heading = 0): void {
+    this.object.position.set(x, 0, z);
+    this.heading = heading;
+    this.object.rotation.y = heading;
+    this.speed = 0;
+  }
+
+  setBlink(visible: boolean): void {
+    this.object.visible = visible;
   }
 }
 

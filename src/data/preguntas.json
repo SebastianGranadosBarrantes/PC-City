@@ -5,139 +5,111 @@
     "piezaId": "cpu",
     "pregunta": "¿Cuál es la función principal del procesador (CPU)?",
     "opciones": [
-      "Almacenar archivos permanentemente",
-      "Ejecutar instrucciones y procesar datos de los programas",
-      "Convertir la corriente eléctrica para los componentes",
-      "Mostrar directamente las imágenes en el monitor"
+      "Almacenar permanentemente todos los archivos",
+      "Ejecutar instrucciones, procesar datos y coordinar el trabajo de la computadora",
+      "Convertir la corriente alterna en corriente continua",
+      "Refrigerar directamente todos los componentes"
     ],
     "correcta": 1,
-    "explicacion": "La CPU ejecuta instrucciones, realiza operaciones y coordina gran parte del trabajo del sistema.",
+    "explicacion": "La CPU ejecuta las instrucciones de los programas, procesa datos y coordina gran parte del trabajo de la computadora.",
     "tiempoSegundos": 30
   },
   {
     "id": "cpu_02",
     "piezaId": "cpu",
-    "pregunta": "¿Qué puede ocurrir si un procesador alcanza temperaturas excesivas?",
+    "pregunta": "¿Qué es una APU según la descripción del procesador?",
     "opciones": [
-      "Aumenta automáticamente la capacidad del disco",
-      "Se borra permanentemente la memoria RAM",
-      "Reduce su rendimiento o apaga el equipo para protegerse",
-      "Convierte la memoria RAM en almacenamiento permanente"
+      "Una unidad que combina un disco duro y memoria RAM",
+      "Una fuente de poder con gráficos integrados",
+      "Un procesador que combina CPU y GPU en un mismo chip o encapsulado",
+      "Una tarjeta gráfica dedicada que sustituye la placa madre"
     ],
     "correcta": 2,
-    "explicacion": "Muchos procesadores reducen su frecuencia cuando se sobrecalientan y pueden provocar un apagado de protección.",
+    "explicacion": "Una APU combina la CPU y la GPU en un mismo chip o encapsulado, permitiendo procesar tareas generales y gráficos con un solo componente.",
     "tiempoSegundos": 30
   },
   {
     "id": "cpu_03",
     "piezaId": "cpu",
-    "pregunta": "¿Para qué sirve la pasta térmica entre el procesador y el disipador?",
+    "pregunta": "¿Qué debes hacer antes de instalar un procesador?",
     "opciones": [
-      "Mejorar la transferencia de calor entre ambas superficies",
-      "Aumentar la cantidad de núcleos del procesador",
-      "Evitar que el sistema operativo se actualice",
-      "Almacenar energía para el arranque"
+      "Alinear las marcas de orientación y evitar forzarlo",
+      "Tocar los pines para comprobar su posición",
+      "Aplicar pasta térmica sobre todos los contactos",
+      "Instalarlo con la computadora encendida"
     ],
     "correcta": 0,
-    "explicacion": "La pasta térmica rellena pequeñas irregularidades entre las superficies y facilita la transferencia de calor hacia el disipador.",
+    "explicacion": "La descripción de mantenimiento indica alinear las marcas de orientación y no forzar el procesador ni tocar sus pines o contactos.",
     "tiempoSegundos": 30
   },
   {
     "id": "cpu_04",
     "piezaId": "cpu",
-    "pregunta": "Al instalar un procesador compatible con un socket que tiene marcas de orientación, ¿qué debes hacer?",
+    "pregunta": "¿Qué debes comprobar si quieres utilizar los gráficos integrados del procesador?",
     "opciones": [
-      "Presionarlo hasta que encaje, aunque ofrezca resistencia",
-      "Aplicar pasta térmica debajo de los contactos",
-      "Moverlo lateralmente para ajustar los pines",
-      "Alinear las marcas y colocarlo sin forzarlo"
+      "Que el disco duro tenga platos magnéticos",
+      "Que la fuente tenga certificación 80 PLUS",
+      "Que el gabinete tenga filtros de polvo",
+      "Que el procesador incluya gráficos integrados y la placa madre tenga conexiones de video necesarias"
     ],
     "correcta": 3,
-    "explicacion": "Las marcas de orientación ayudan a colocar correctamente el procesador. Forzarlo puede dañar los contactos o el socket.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "cpu_05",
-    "piezaId": "cpu",
-    "pregunta": "¿Qué significa que un procesador tenga varios núcleos?",
-    "opciones": [
-      "Que posee varios discos duros integrados",
-      "Que puede ejecutar trabajo en varios núcleos de procesamiento",
-      "Que necesita una fuente de poder por cada núcleo",
-      "Que no requiere memoria RAM"
-    ],
-    "correcta": 1,
-    "explicacion": "Los núcleos pueden ejecutar tareas o hilos de trabajo en paralelo, según el programa y las capacidades del procesador.",
+    "explicacion": "No todos los procesadores incluyen gráficos integrados. También deben existir las conexiones de video necesarias en la placa madre.",
     "tiempoSegundos": 30
   },
   {
     "id": "ram_01",
     "piezaId": "ram",
-    "pregunta": "¿Cuál es la función principal de la memoria RAM?",
+    "pregunta": "¿Cuál es la función de la memoria RAM?",
     "opciones": [
-      "Guardar los archivos aunque se desconecte la computadora",
-      "Alimentar eléctricamente la placa madre",
+      "Convertir corriente alterna en corriente continua",
       "Almacenar temporalmente los datos y programas que se están utilizando",
-      "Procesar exclusivamente los gráficos de los videojuegos"
+      "Refrigerar el procesador",
+      "Guardar archivos permanentemente aunque no haya electricidad"
     ],
-    "correcta": 2,
-    "explicacion": "La RAM mantiene disponibles temporalmente los datos que necesitan el procesador y los programas. Es una memoria volátil.",
+    "correcta": 1,
+    "explicacion": "La RAM es la memoria de trabajo que mantiene temporalmente disponibles los datos y programas en uso.",
     "tiempoSegundos": 30
   },
   {
     "id": "ram_02",
     "piezaId": "ram",
-    "pregunta": "¿Qué precaución debes tomar antes de instalar un módulo de RAM?",
+    "pregunta": "¿Qué ocurre con el contenido de la RAM cuando se interrumpe la alimentación eléctrica?",
     "opciones": [
-      "Apagar y desconectar el equipo, y tomar precauciones contra descargas electrostáticas",
-      "Encender la computadora para comprobar la ranura",
-      "Aplicar pasta térmica en los contactos dorados",
-      "Desfragmentar el módulo antes de instalarlo"
+      "Se transfiere automáticamente a la tarjeta gráfica",
+      "Se conserva indefinidamente",
+      "Se pierde porque la RAM es volátil",
+      "Se convierte en almacenamiento permanente"
     ],
-    "correcta": 0,
-    "explicacion": "El equipo debe estar apagado y desconectado. Descárgate de electricidad estática de forma segura y evita tocar los contactos.",
+    "correcta": 2,
+    "explicacion": "La descripción explica que la RAM es volátil y pierde su contenido cuando se interrumpe la alimentación eléctrica.",
     "tiempoSegundos": 30
   },
   {
     "id": "ram_03",
     "piezaId": "ram",
-    "pregunta": "¿Qué síntoma puede producir un módulo de RAM mal instalado?",
+    "pregunta": "¿Qué precaución debes tomar antes de instalar un módulo de RAM?",
     "opciones": [
-      "El monitor aumenta su resolución automáticamente",
-      "La fuente convierte corriente continua en alterna",
-      "El disco duro deja de necesitar energía",
-      "La computadora no arranca o presenta errores de memoria"
+      "Apagar y desconectar el equipo y tomar precauciones contra descargas electrostáticas",
+      "Mantener la computadora encendida",
+      "Aplicar pasta térmica en los contactos",
+      "Desfragmentar la memoria"
     ],
-    "correcta": 3,
-    "explicacion": "Un módulo mal asentado puede impedir que el equipo complete el arranque o provocar errores e inestabilidad.",
+    "correcta": 0,
+    "explicacion": "El mantenimiento de la RAM indica apagar y desconectar el equipo y proteger los componentes de descargas electrostáticas.",
     "tiempoSegundos": 30
   },
   {
     "id": "ram_04",
     "piezaId": "ram",
-    "pregunta": "¿Qué ocurre con los datos almacenados en la RAM cuando se apaga la computadora?",
+    "pregunta": "¿Qué debes verificar antes de comprar RAM para ampliar una computadora?",
     "opciones": [
-      "Se transfieren siempre al procesador",
-      "Se pierden porque la RAM necesita energía para conservarlos",
-      "Se guardan automáticamente en la tarjeta gráfica",
-      "Permanecen guardados indefinidamente"
+      "Que tenga el mismo color que el gabinete",
+      "Que tenga la misma marca que el disco duro",
+      "Que su capacidad sea igual a la del SSD",
+      "Que el tipo y la capacidad sean compatibles con la placa madre y el procesador"
     ],
-    "correcta": 1,
-    "explicacion": "La RAM es volátil: necesita alimentación eléctrica para conservar su contenido.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "ram_05",
-    "piezaId": "ram",
-    "pregunta": "¿Qué debes comprobar antes de comprar memoria RAM para ampliar una computadora?",
-    "opciones": [
-      "Que tenga el mismo color que la placa madre",
-      "Que su capacidad sea mayor que la del disco duro",
-      "Que sea compatible con la placa madre y el procesador",
-      "Que tenga el mismo fabricante que la fuente de poder"
-    ],
-    "correcta": 2,
-    "explicacion": "Debes comprobar el tipo de memoria admitido, la capacidad máxima, la compatibilidad y las especificaciones de la plataforma.",
+    "correcta": 3,
+    "explicacion": "La descripción de la RAM indica comprobar el tipo compatible, la capacidad máxima y las especificaciones de la placa madre y del procesador.",
     "tiempoSegundos": 30
   },
   {
@@ -145,279 +117,223 @@
     "piezaId": "placa",
     "pregunta": "¿Cuál es la función principal de la placa madre?",
     "opciones": [
-      "Conectar los componentes y permitir que se comuniquen entre sí",
-      "Almacenar permanentemente todos los documentos",
-      "Reemplazar la función del procesador",
+      "Guardar permanentemente todos los documentos",
+      "Conectar los componentes y permitir la comunicación entre ellos",
+      "Reemplazar la fuente de poder",
       "Enfriar exclusivamente la tarjeta gráfica"
     ],
-    "correcta": 0,
-    "explicacion": "La placa madre proporciona conexiones, circuitos y comunicación entre la CPU, la RAM, el almacenamiento y otros dispositivos.",
+    "correcta": 1,
+    "explicacion": "La placa madre contiene circuitos y conexiones que permiten la comunicación entre el procesador, la RAM, el almacenamiento y otros dispositivos.",
     "tiempoSegundos": 30
   },
   {
     "id": "placa_02",
     "piezaId": "placa",
-    "pregunta": "La computadora pierde la fecha y la hora después de permanecer desconectada. ¿Qué componente conviene revisar?",
+    "pregunta": "Si el equipo pierde la fecha y la hora al desconectarlo, ¿qué componente debes comprobar?",
     "opciones": [
       "El ventilador de la tarjeta gráfica",
-      "El cable SATA del disco",
-      "El módulo de memoria RAM",
-      "La batería CMOS de la placa madre"
+      "El cable de video del monitor",
+      "La batería CMOS de la placa madre",
+      "Los filtros de polvo del gabinete"
     ],
-    "correcta": 3,
-    "explicacion": "Una batería CMOS agotada puede causar la pérdida de la hora y de determinados ajustes del firmware al desconectar el equipo.",
+    "correcta": 2,
+    "explicacion": "El mantenimiento de la placa madre indica comprobar la batería CMOS cuando se pierden la fecha, la hora o ciertos ajustes del firmware.",
     "tiempoSegundos": 30
   },
   {
     "id": "placa_03",
     "piezaId": "placa",
-    "pregunta": "¿Qué función cumple el socket del procesador en la placa madre?",
+    "pregunta": "¿Qué determina qué procesadores pueden instalarse en una placa madre?",
     "opciones": [
-      "Guardar las copias de seguridad del sistema",
-      "Alojar el procesador compatible y establecer sus conexiones",
-      "Regular la velocidad de Internet",
-      "Convertir los datos digitales en imágenes impresas"
+      "El socket de la placa madre",
+      "El color de la memoria RAM",
+      "El tamaño del monitor",
+      "La cantidad de archivos guardados"
     ],
-    "correcta": 1,
-    "explicacion": "El socket aloja la CPU y permite establecer las conexiones eléctricas necesarias entre el procesador y la placa.",
+    "correcta": 0,
+    "explicacion": "La descripción indica que el socket determina qué procesadores pueden instalarse en la placa madre.",
     "tiempoSegundos": 30
   },
   {
     "id": "placa_04",
     "piezaId": "placa",
-    "pregunta": "¿Cuál es una práctica adecuada para limpiar una placa madre?",
+    "pregunta": "¿Qué debes utilizar al instalar una placa madre dentro del gabinete?",
     "opciones": [
-      "Limpiarla con agua mientras permanece conectada",
-      "Aplicar aceite sobre los circuitos",
-      "Desconectar el equipo y retirar el polvo con métodos adecuados y seguros contra la estática",
-      "Frotar los circuitos con un objeto metálico"
-    ],
-    "correcta": 2,
-    "explicacion": "La limpieza debe realizarse con el equipo desconectado, utilizando herramientas apropiadas y evitando líquidos, daños físicos y descargas electrostáticas.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "placa_05",
-    "piezaId": "placa",
-    "pregunta": "¿Qué información permite conocer el modelo exacto de una placa madre?",
-    "opciones": [
-      "La marca del teclado conectado",
-      "El color de los cables de alimentación",
-      "La capacidad del monitor",
-      "La compatibilidad de componentes y las especificaciones disponibles"
+      "Un recipiente con agua para retirar el polvo",
+      "Cualquier tornillo metálico sin importar su posición",
+      "Pasta térmica debajo de toda la placa",
+      "Los separadores adecuados para su formato"
     ],
     "correcta": 3,
-    "explicacion": "El modelo permite consultar el socket, la memoria compatible, las ranuras de expansión y las conexiones admitidas.",
+    "explicacion": "El mantenimiento indica utilizar los separadores adecuados para evitar contactos eléctricos indebidos entre la placa y el gabinete.",
     "tiempoSegundos": 30
   },
   {
     "id": "gpu_01",
     "piezaId": "gpu",
-    "pregunta": "¿Cuál es la función principal de la tarjeta gráfica (GPU)?",
+    "pregunta": "¿Cuál es la función de la GPU?",
     "opciones": [
-      "Almacenar todos los archivos del usuario",
-      "Procesar gráficos e imágenes para su presentación",
+      "Almacenar permanentemente los documentos",
       "Administrar exclusivamente las conexiones de red",
-      "Suministrar energía a todos los componentes"
+      "Procesar operaciones gráficas y generar los datos visuales que se muestran en pantalla",
+      "Convertir la corriente alterna de la toma eléctrica"
     ],
-    "correcta": 1,
-    "explicacion": "La GPU procesa operaciones gráficas y paralelas. Puede estar integrada en el procesador o instalarse como una tarjeta dedicada.",
+    "correcta": 2,
+    "explicacion": "La GPU procesa operaciones gráficas y permite generar las imágenes que se muestran en pantalla.",
     "tiempoSegundos": 30
   },
   {
     "id": "gpu_02",
     "piezaId": "gpu",
-    "pregunta": "¿Para qué sirve la memoria VRAM de una tarjeta gráfica dedicada?",
+    "pregunta": "¿Cuál es la diferencia principal entre una APU y una tarjeta gráfica dedicada?",
     "opciones": [
-      "Guardar temporalmente datos y recursos utilizados en el procesamiento gráfico",
-      "Reemplazar permanentemente el disco duro",
-      "Controlar el voltaje de la toma eléctrica",
-      "Conservar la fecha y la hora del sistema"
+      "La APU combina CPU y GPU en un mismo chip o encapsulado, mientras que la tarjeta dedicada es un componente separado",
+      "La APU solo sirve para almacenar archivos",
+      "La tarjeta dedicada siempre está integrada en el procesador",
+      "La tarjeta dedicada no puede procesar gráficos"
     ],
     "correcta": 0,
-    "explicacion": "La VRAM almacena recursos gráficos y datos que la GPU necesita consultar durante el procesamiento.",
+    "explicacion": "La descripción de la GPU explica que una APU combina CPU y GPU en un mismo chip o encapsulado, mientras que una tarjeta dedicada es un componente separado.",
     "tiempoSegundos": 30
   },
   {
     "id": "gpu_03",
     "piezaId": "gpu",
-    "pregunta": "Un videojuego presenta temperaturas elevadas y ventiladores de la GPU muy ruidosos. ¿Qué deberías revisar primero?",
+    "pregunta": "¿Para qué sirve la memoria VRAM de una tarjeta gráfica dedicada?",
     "opciones": [
-      "La contraseña de la cuenta del usuario",
-      "La batería CMOS de la placa madre",
-      "La ventilación, el polvo y las temperaturas de la tarjeta gráfica",
-      "La cantidad de documentos guardados"
+      "Conservar la fecha y hora de la computadora",
+      "Almacenar los datos y recursos gráficos que necesita la GPU",
+      "Reemplazar la fuente de poder",
+      "Guardar archivos permanentemente cuando el equipo está apagado"
     ],
-    "correcta": 2,
-    "explicacion": "El polvo, una ventilación deficiente o una carga de trabajo elevada pueden aumentar las temperaturas y la velocidad de los ventiladores.",
+    "correcta": 1,
+    "explicacion": "La descripción indica que la VRAM almacena los datos y recursos gráficos que necesita la GPU.",
     "tiempoSegundos": 30
   },
   {
     "id": "gpu_04",
     "piezaId": "gpu",
-    "pregunta": "¿Qué debes verificar si una tarjeta gráfica dedicada necesita conectores de alimentación adicionales?",
+    "pregunta": "¿Qué debes comprobar si una tarjeta gráfica dedicada requiere alimentación adicional?",
     "opciones": [
-      "Que el disco duro tenga espacio libre",
-      "Que el teclado esté conectado directamente a la GPU",
-      "Que la RAM tenga la misma capacidad que la VRAM",
-      "Que la fuente tenga la potencia y los conectores adecuados"
+      "Que el teclado tenga memoria propia",
+      "Que el gabinete tenga el mismo color que la tarjeta",
+      "Que el disco duro tenga suficiente espacio libre",
+      "Que la fuente sea compatible y tenga los conectores necesarios"
     ],
     "correcta": 3,
-    "explicacion": "Debes comprobar los requisitos de alimentación de la tarjeta y utilizar los conectores apropiados de una fuente compatible.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "gpu_05",
-    "piezaId": "gpu",
-    "pregunta": "¿Qué diferencia existe entre una GPU integrada y una tarjeta gráfica dedicada?",
-    "opciones": [
-      "La GPU integrada siempre necesita una fuente de poder independiente",
-      "La GPU integrada forma parte del procesador o del sistema, mientras que la dedicada es un componente gráfico separado",
-      "La dedicada no puede procesar gráficos 3D",
-      "La integrada siempre tiene más memoria que la dedicada"
-    ],
-    "correcta": 1,
-    "explicacion": "La GPU integrada comparte recursos del sistema en muchas plataformas; una GPU dedicada cuenta con hardware separado y normalmente con VRAM propia.",
+    "explicacion": "El mantenimiento de la GPU indica comprobar que la fuente sea compatible cuando la tarjeta requiere alimentación adicional.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_hdd_01",
     "piezaId": "almacenamiento_hdd",
-    "pregunta": "¿Cómo almacena los datos un disco duro tradicional (HDD)?",
+    "pregunta": "¿Cómo almacena los datos un HDD?",
     "opciones": [
-      "Mediante discos magnéticos que giran y cabezales de lectura y escritura",
-      "Mediante módulos de memoria RAM volátil",
-      "Mediante una red de ventiladores",
-      "Mediante cartuchos de tinta"
+      "Mediante memoria RAM volátil",
+      "Mediante platos magnéticos giratorios y cabezales de lectura y escritura",
+      "Mediante ventiladores y disipadores",
+      "Mediante contactos de video de la placa madre"
     ],
-    "correcta": 0,
-    "explicacion": "El HDD utiliza platos magnéticos giratorios y cabezales que leen y escriben información.",
+    "correcta": 1,
+    "explicacion": "La descripción del HDD explica que utiliza platos magnéticos giratorios y cabezales de lectura y escritura.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_hdd_02",
     "piezaId": "almacenamiento_hdd",
-    "pregunta": "¿Qué precaución es especialmente importante para un HDD mientras está funcionando?",
+    "pregunta": "¿Qué precaución es especialmente importante mientras un HDD está funcionando?",
     "opciones": [
-      "Desconectarlo repetidamente para acelerar su lectura",
-      "Abrirlo para limpiar sus platos",
-      "Evitar golpes y movimientos bruscos que puedan dañar sus mecanismos",
-      "Colocarlo junto a un recipiente con agua"
+      "Evitar golpes y movimientos bruscos",
+      "Abrir la unidad para limpiar los platos",
+      "Desconectarla repetidamente para acelerar su lectura",
+      "Colocarla junto a un recipiente con agua"
     ],
-    "correcta": 2,
-    "explicacion": "Los golpes pueden provocar daños mecánicos en los platos y cabezales, con riesgo de pérdida de datos.",
+    "correcta": 0,
+    "explicacion": "El HDD contiene partes mecánicas sensibles a los golpes y movimientos bruscos, especialmente mientras funciona.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_hdd_03",
     "piezaId": "almacenamiento_hdd",
-    "pregunta": "¿Para qué sirve la desfragmentación tradicional de un HDD?",
+    "pregunta": "¿Qué beneficio puede proporcionar la desfragmentación de un HDD?",
     "opciones": [
-      "Eliminar todos los virus del sistema",
-      "Aumentar la memoria RAM disponible",
-      "Convertir el HDD en una unidad SSD",
-      "Reorganizar fragmentos de archivos para reducir movimientos innecesarios de los cabezales"
+      "Aumentar permanentemente la capacidad física de la unidad",
+      "Eliminar automáticamente cualquier virus",
+      "Reducir los tiempos de acceso a archivos fragmentados",
+      "Convertir el HDD en un SSD"
     ],
-    "correcta": 3,
-    "explicacion": "En un HDD, la desfragmentación puede reducir los desplazamientos de los cabezales al acceder a archivos fragmentados. No sustituye las copias de seguridad.",
+    "correcta": 2,
+    "explicacion": "La descripción indica que la desfragmentación puede mejorar el acceso a archivos fragmentados en un HDD.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_hdd_04",
     "piezaId": "almacenamiento_hdd",
-    "pregunta": "Una computadora emite clics mecánicos inusuales y comienza a perder archivos. ¿Cuál es la acción más prudente?",
+    "pregunta": "¿Qué debes hacer si un HDD presenta ruidos mecánicos anormales y errores de lectura?",
     "opciones": [
-      "Ejecutar desfragmentaciones repetidas para corregir el ruido",
-      "Priorizar la recuperación o copia de los datos importantes y evitar pruebas innecesarias",
-      "Abrir el disco y mover sus cabezales manualmente",
-      "Golpear suavemente el disco hasta que funcione"
+      "Abrirlo y mover los cabezales manualmente",
+      "Golpearlo suavemente para corregir el problema",
+      "Ejecutar desfragmentaciones repetidas",
+      "Priorizar la recuperación de los datos importantes y evitar pruebas innecesarias"
     ],
-    "correcta": 1,
-    "explicacion": "Los ruidos anormales y los errores pueden indicar una avería. Conviene minimizar el uso de la unidad y buscar asistencia especializada si los datos son importantes.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "almacenamiento_hdd_05",
-    "piezaId": "almacenamiento_hdd",
-    "pregunta": "¿Cuál es una ventaja habitual de un HDD frente a un SSD del mismo rango de precio?",
-    "opciones": [
-      "Siempre ofrece mayor velocidad de acceso",
-      "No puede sufrir daños mecánicos",
-      "Suele ofrecer más capacidad de almacenamiento por el mismo precio",
-      "No necesita copias de seguridad"
-    ],
-    "correcta": 2,
-    "explicacion": "Los HDD suelen ofrecer una mayor capacidad por costo, aunque son más lentos y tienen partes mecánicas móviles.",
+    "correcta": 3,
+    "explicacion": "El mantenimiento recomienda priorizar la recuperación de datos y evitar pruebas innecesarias ante ruidos mecánicos anormales o errores de lectura.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_ssd_01",
     "piezaId": "almacenamiento_ssd",
-    "pregunta": "¿Qué tecnología utiliza un SSD para almacenar datos?",
+    "pregunta": "¿Qué tecnología utiliza un SSD para guardar los datos?",
     "opciones": [
-      "Platos magnéticos que giran",
-      "Cabezales mecánicos que recorren discos",
-      "Memoria RAM que pierde todos sus datos al apagar",
-      "Memoria flash que conserva los datos sin alimentación"
+      "Platos magnéticos giratorios",
+      "Memoria flash",
+      "Cabezales mecánicos de lectura",
+      "Memoria RAM que pierde los datos al apagar"
     ],
-    "correcta": 3,
-    "explicacion": "Los SSD utilizan memoria flash no volátil y no necesitan piezas mecánicas móviles para leer o escribir datos.",
+    "correcta": 1,
+    "explicacion": "La descripción del SSD indica que utiliza memoria flash para almacenar el sistema operativo, los programas y los archivos.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_ssd_02",
     "piezaId": "almacenamiento_ssd",
-    "pregunta": "¿Qué ventaja ofrece normalmente un SSD frente a un HDD?",
+    "pregunta": "¿Por qué un SSD suele tener menores tiempos de acceso que un HDD?",
     "opciones": [
-      "Menores tiempos de acceso y cargas más rápidas",
-      "Mayor ruido debido a sus platos giratorios",
-      "Necesidad de desfragmentación manual semanal",
-      "Capacidad ilimitada de almacenamiento"
+      "Porque utiliza platos que giran más rápido",
+      "Porque necesita desfragmentarse constantemente",
+      "Porque no utiliza platos giratorios ni cabezales mecánicos",
+      "Porque almacena los archivos en la memoria de la tarjeta gráfica"
     ],
-    "correcta": 0,
-    "explicacion": "Los SSD tienen tiempos de acceso reducidos y suelen mejorar el arranque del sistema y la apertura de aplicaciones.",
+    "correcta": 2,
+    "explicacion": "El SSD no tiene platos ni cabezales mecánicos, lo que permite menores tiempos de acceso que un HDD en condiciones habituales.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_ssd_03",
     "piezaId": "almacenamiento_ssd",
-    "pregunta": "¿Qué mantenimiento es apropiado para un SSD en un sistema operativo moderno?",
+    "pregunta": "¿Qué mantenimiento necesita normalmente un SSD respecto a la desfragmentación?",
     "opciones": [
-      "Desfragmentarlo manualmente todos los días",
-      "Permitir las optimizaciones compatibles del sistema, como TRIM, y mantener copias de seguridad",
-      "Abrirlo para lubricar sus circuitos",
-      "Llenarlo por completo para mejorar su velocidad"
+      "No requiere desfragmentación manual habitual; el sistema puede gestionar optimizaciones compatibles como TRIM",
+      "Debe desfragmentarse manualmente todos los días",
+      "Debe abrirse para limpiar sus circuitos",
+      "Debe llenarse completamente para funcionar"
     ],
-    "correcta": 1,
-    "explicacion": "Los sistemas modernos gestionan las optimizaciones del SSD, incluido TRIM cuando es compatible. La desfragmentación manual habitual no es necesaria.",
+    "correcta": 0,
+    "explicacion": "El mantenimiento indica que la desfragmentación manual habitual no es necesaria y que el sistema operativo puede gestionar optimizaciones compatibles como TRIM.",
     "tiempoSegundos": 30
   },
   {
     "id": "almacenamiento_ssd_04",
     "piezaId": "almacenamiento_ssd",
-    "pregunta": "¿Qué debes verificar antes de comprar un SSD M.2 para una placa madre?",
+    "pregunta": "¿Qué debes comprobar antes de instalar un SSD M.2?",
     "opciones": [
-      "Que el SSD tenga el mismo color que el gabinete",
-      "Que la fuente tenga un ventilador RGB",
-      "Que la ranura admita el formato y la interfaz del SSD, como SATA o NVMe",
-      "Que el monitor tenga un puerto USB libre"
-    ],
-    "correcta": 2,
-    "explicacion": "M.2 describe un formato físico, pero las unidades pueden utilizar distintas interfaces. Debes comprobar qué admite la ranura de la placa madre.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "almacenamiento_ssd_05",
-    "piezaId": "almacenamiento_ssd",
-    "pregunta": "¿Por qué es importante mantener copias de seguridad aunque utilices un SSD?",
-    "opciones": [
-      "Porque el SSD borra todos los datos al reiniciar",
-      "Porque las copias de seguridad duplican automáticamente la velocidad",
-      "Porque un SSD no permite recuperar archivos",
-      "Porque el SSD puede fallar, sufrir daños o perder datos como cualquier unidad"
+      "Que tenga el mismo color que la placa madre",
+      "Que la fuente tenga certificación 80 PLUS",
+      "Que el gabinete tenga ventiladores RGB",
+      "Que el formato y la interfaz sean compatibles con la placa madre"
     ],
     "correcta": 3,
-    "explicacion": "Los SSD también pueden fallar o sufrir pérdida de datos. Las copias de seguridad permiten recuperar información ante distintos incidentes.",
+    "explicacion": "La descripción explica que M.2 es un formato físico y que la unidad puede utilizar SATA o NVMe. La compatibilidad debe comprobarse antes de instalarla.",
     "tiempoSegundos": 30
   },
   {
@@ -425,69 +341,55 @@
     "piezaId": "fuente",
     "pregunta": "¿Cuál es la función principal de la fuente de poder?",
     "opciones": [
-      "Convertir la corriente alterna de entrada en corriente continua adecuada para los componentes",
-      "Procesar las instrucciones del sistema operativo",
-      "Almacenar permanentemente los documentos",
-      "Enfriar directamente todos los chips del equipo"
+      "Ejecutar las instrucciones de los programas",
+      "Convertir la corriente alterna en salidas de corriente continua para los componentes",
+      "Almacenar los documentos del usuario",
+      "Procesar las imágenes de los videojuegos"
     ],
-    "correcta": 0,
-    "explicacion": "La fuente convierte la corriente alterna en las salidas de corriente continua que necesitan los componentes de la computadora.",
+    "correcta": 1,
+    "explicacion": "La fuente convierte la corriente alterna de la toma eléctrica en salidas de corriente continua que utilizan los componentes.",
     "tiempoSegundos": 30
   },
   {
     "id": "fuente_02",
     "piezaId": "fuente",
-    "pregunta": "¿Por qué no se debe abrir una fuente de poder para limpiarla sin la capacitación adecuada?",
+    "pregunta": "¿Por qué no se debe abrir una fuente de poder sin capacitación adecuada?",
     "opciones": [
       "Porque se borran los archivos del disco",
-      "Porque puede perder la conexión Wi-Fi",
-      "Porque sus capacitores pueden retener voltajes peligrosos incluso desconectada",
-      "Porque la RAM deja de funcionar permanentemente"
+      "Porque se pierde la conexión de red",
+      "Porque sus capacitores pueden conservar voltajes peligrosos incluso después de desconectarla",
+      "Porque se desfragmenta la memoria RAM"
     ],
     "correcta": 2,
-    "explicacion": "Los capacitores pueden conservar una carga peligrosa después de desconectar la fuente. Su interior debe ser manipulado por personal capacitado.",
+    "explicacion": "El mantenimiento advierte que los capacitores de la fuente pueden conservar voltajes peligrosos después de desconectarla.",
     "tiempoSegundos": 30
   },
   {
     "id": "fuente_03",
     "piezaId": "fuente",
-    "pregunta": "La computadora se apaga inesperadamente cuando ejecutas un juego exigente. ¿Qué posible causa relacionada con la fuente debes considerar?",
+    "pregunta": "¿Qué puede provocar una fuente insuficiente o defectuosa?",
     "opciones": [
-      "Que la fuente tenga demasiado espacio de almacenamiento",
-      "Que no proporcione la potencia necesaria o presente una avería",
-      "Que el teclado tenga poca memoria",
-      "Que la fecha del BIOS sea incorrecta"
+      "Inestabilidad, apagados inesperados o problemas de arranque",
+      "Mayor capacidad física del disco",
+      "Más núcleos en el procesador",
+      "Mayor capacidad de memoria RAM"
     ],
-    "correcta": 1,
-    "explicacion": "Una fuente insuficiente o defectuosa puede causar inestabilidad bajo carga. También deben revisarse otras posibles causas antes de concluir que está averiada.",
+    "correcta": 0,
+    "explicacion": "La descripción de la fuente identifica la inestabilidad, los apagados inesperados y los problemas de arranque como posibles síntomas.",
     "tiempoSegundos": 30
   },
   {
     "id": "fuente_04",
     "piezaId": "fuente",
-    "pregunta": "¿Qué debes comprobar al elegir una fuente para una computadora nueva?",
+    "pregunta": "¿Qué indica la certificación 80 PLUS?",
     "opciones": [
-      "Que tenga el mismo color que la placa madre",
-      "Que su potencia sea menor que el consumo de los componentes",
-      "Que tenga exactamente el mismo peso que la fuente anterior",
-      "Que su potencia, conectores y calidad sean adecuados para los componentes"
+      "Que la fuente nunca va a fallar",
+      "Que no necesita ventilación",
+      "Que funciona sin conectarse a la electricidad",
+      "Que cumple determinados niveles de eficiencia energética bajo condiciones de prueba"
     ],
     "correcta": 3,
-    "explicacion": "La selección debe considerar el consumo esperado, los conectores requeridos, la calidad de la unidad y un margen apropiado para la carga.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "fuente_05",
-    "piezaId": "fuente",
-    "pregunta": "¿Qué significa que una fuente tenga certificación 80 PLUS?",
-    "opciones": [
-      "Que cumple determinados niveles de eficiencia energética en condiciones de prueba",
-      "Que puede suministrar energía sin conectarse a la toma eléctrica",
-      "Que garantiza que nunca fallará",
-      "Que sustituye la necesidad de ventilación"
-    ],
-    "correcta": 0,
-    "explicacion": "80 PLUS certifica niveles de eficiencia bajo condiciones definidas. No garantiza por sí sola la calidad general ni la ausencia de fallas.",
+    "explicacion": "La descripción indica que 80 PLUS evalúa determinados niveles de eficiencia energética y no garantiza por sí sola que la fuente nunca falle.",
     "tiempoSegundos": 30
   },
   {
@@ -495,139 +397,111 @@
     "piezaId": "cooler",
     "pregunta": "¿Cuál es la función principal del disipador del procesador?",
     "opciones": [
-      "Guardar los datos del sistema operativo",
-      "Aumentar la capacidad de memoria RAM",
-      "Extraer y transferir el calor del procesador para ayudar a mantener una temperatura adecuada",
-      "Convertir la corriente alterna en corriente continua"
+      "Almacenar los archivos del sistema",
+      "Extraer el calor del procesador y transferirlo al aire o a un líquido refrigerante",
+      "Convertir la corriente alterna en continua",
+      "Aumentar la capacidad de almacenamiento"
     ],
-    "correcta": 2,
-    "explicacion": "El disipador recibe el calor del procesador y lo transfiere al aire o a un líquido refrigerante, según el sistema.",
+    "correcta": 1,
+    "explicacion": "La descripción del disipador explica que extrae el calor del procesador y lo transfiere al aire o a un líquido refrigerante.",
     "tiempoSegundos": 30
   },
   {
     "id": "cooler_02",
     "piezaId": "cooler",
-    "pregunta": "¿Qué debes hacer al limpiar un ventilador con aire comprimido?",
+    "pregunta": "¿Para qué sirve la pasta térmica entre el procesador y el disipador?",
     "opciones": [
-      "Hacerlo girar a la máxima velocidad posible",
-      "Sujetar las aspas para evitar que giren excesivamente",
-      "Rociarlo con agua mientras funciona",
-      "Desconectar el disipador y dejar el procesador sin refrigeración"
+      "Aumentar la cantidad de núcleos",
+      "Guardar energía para el arranque",
+      "Facilitar la transferencia de calor al rellenar pequeñas irregularidades entre las superficies",
+      "Evitar que el sistema operativo se actualice"
     ],
-    "correcta": 1,
-    "explicacion": "Sujetar las aspas evita que el aire las haga girar a velocidades excesivas y ayuda a proteger el ventilador.",
+    "correcta": 2,
+    "explicacion": "La descripción explica que la pasta térmica rellena pequeñas irregularidades entre el procesador y el disipador para facilitar la transferencia de calor.",
     "tiempoSegundos": 30
   },
   {
     "id": "cooler_03",
     "piezaId": "cooler",
-    "pregunta": "¿Cuándo conviene reemplazar la pasta térmica del procesador?",
+    "pregunta": "¿Qué debes hacer al limpiar el ventilador del disipador con aire comprimido?",
     "opciones": [
-      "Cada vez que se cambia el fondo de pantalla",
-      "Cada vez que se instala una aplicación",
-      "Únicamente cuando se amplía el disco duro",
-      "Cuando se retira el disipador y se necesita restablecer el contacto térmico"
+      "Sujetar las aspas para evitar que giren a velocidades excesivas",
+      "Rociarlo con agua mientras funciona",
+      "Hacerlo girar a máxima velocidad",
+      "Desconectar el disipador y dejar el procesador sin refrigeración"
     ],
-    "correcta": 3,
-    "explicacion": "Al retirar el disipador, se debe limpiar la pasta anterior y aplicar pasta nueva siguiendo las indicaciones del fabricante.",
+    "correcta": 0,
+    "explicacion": "El mantenimiento indica sujetar las aspas durante la limpieza para evitar que giren a velocidades excesivas.",
     "tiempoSegundos": 30
   },
   {
     "id": "cooler_04",
     "piezaId": "cooler",
-    "pregunta": "Después de instalar un disipador, el procesador alcanza temperaturas muy altas. ¿Qué deberías revisar?",
+    "pregunta": "¿Qué debes hacer con la pasta térmica si retiras el disipador del procesador?",
     "opciones": [
-      "El montaje del disipador, la pasta térmica y la conexión del ventilador",
-      "El color del gabinete",
-      "La contraseña de la red inalámbrica",
-      "El tamaño de los documentos del usuario"
+      "Dejar siempre la pasta anterior sin revisarla",
+      "Aplicar aceite sobre los contactos",
+      "Limpiar el procesador con agua",
+      "Limpiar la pasta anterior y aplicar una nueva siguiendo las instrucciones del fabricante"
     ],
-    "correcta": 0,
-    "explicacion": "Un montaje incorrecto, una aplicación inadecuada de pasta térmica o un ventilador desconectado pueden impedir la refrigeración correcta.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "cooler_05",
-    "piezaId": "cooler",
-    "pregunta": "¿Qué diferencia existe entre un sistema de refrigeración por aire y uno por líquido?",
-    "opciones": [
-      "El sistema por aire siempre necesita una bomba",
-      "El sistema por líquido no necesita transferir calor",
-      "El sistema por aire utiliza un disipador y normalmente ventiladores; el líquido transporta calor mediante un refrigerante",
-      "Ambos sistemas almacenan el calor dentro del procesador"
-    ],
-    "correcta": 2,
-    "explicacion": "La refrigeración por aire transfiere el calor a un disipador ventilado; la refrigeración líquida lo transporta mediante un fluido hacia un radiador.",
+    "correcta": 3,
+    "explicacion": "El mantenimiento indica limpiar la pasta térmica anterior y aplicar una nueva cuando se retira el disipador.",
     "tiempoSegundos": 30
   },
   {
     "id": "case_01",
     "piezaId": "case",
-    "pregunta": "¿Cuál es una función importante del gabinete de una computadora?",
+    "pregunta": "¿Cuál es una función principal del gabinete?",
     "opciones": [
-      "Ejecutar las instrucciones de los programas",
-      "Alojar y proteger los componentes, facilitando una ventilación adecuada",
-      "Almacenar todos los datos de manera permanente",
-      "Convertir la señal de video en corriente eléctrica"
+      "Ejecutar las instrucciones del procesador",
+      "Alojar y proteger los componentes y facilitar un flujo de aire adecuado",
+      "Almacenar permanentemente todos los documentos",
+      "Convertir la corriente alterna en corriente continua"
     ],
     "correcta": 1,
-    "explicacion": "El gabinete mantiene los componentes instalados y ayuda a organizar la circulación del aire para evacuar el calor.",
+    "explicacion": "La descripción indica que el gabinete aloja y protege los componentes y permite establecer un flujo de aire para controlar las temperaturas.",
     "tiempoSegundos": 30
   },
   {
     "id": "case_02",
     "piezaId": "case",
-    "pregunta": "¿Por qué es importante limpiar periódicamente los filtros de polvo del gabinete?",
+    "pregunta": "¿Por qué debes limpiar periódicamente los filtros de polvo del gabinete?",
     "opciones": [
-      "Porque aumentan automáticamente la velocidad de la CPU",
-      "Porque eliminan la necesidad de ventiladores",
-      "Porque amplían la capacidad del SSD",
-      "Porque la acumulación de polvo puede restringir el flujo de aire y aumentar las temperaturas"
+      "Porque aumentan la cantidad de núcleos del procesador",
+      "Porque duplican la capacidad de la RAM",
+      "Porque ayudan a mantener despejada la circulación del aire",
+      "Porque sustituyen la fuente de poder"
     ],
-    "correcta": 3,
-    "explicacion": "Los filtros obstruidos reducen la entrada de aire y pueden dificultar la refrigeración de los componentes.",
+    "correcta": 2,
+    "explicacion": "La descripción indica que los filtros reducen la entrada de polvo y que los ventiladores ayudan a introducir aire fresco y expulsar aire caliente.",
     "tiempoSegundos": 30
   },
   {
     "id": "case_03",
     "piezaId": "case",
-    "pregunta": "¿Qué beneficio ofrece organizar correctamente los cables dentro del gabinete?",
+    "pregunta": "¿Qué beneficio tiene organizar correctamente los cables dentro del gabinete?",
     "opciones": [
-      "Reduce las obstrucciones al flujo de aire y facilita el mantenimiento",
-      "Duplica la memoria RAM disponible",
-      "Aumenta la capacidad del procesador",
-      "Elimina la necesidad de una fuente de poder"
+      "Ayuda a evitar que los cables bloqueen los ventiladores y el flujo de aire",
+      "Duplica la memoria RAM",
+      "Aumenta automáticamente la capacidad del SSD",
+      "Elimina la necesidad de refrigeración"
     ],
     "correcta": 0,
-    "explicacion": "Una buena organización reduce obstáculos para el aire y facilita identificar conexiones y realizar futuras reparaciones.",
+    "explicacion": "El mantenimiento indica organizar los cables sin bloquear los ventiladores para mantener despejadas las entradas y salidas de aire.",
     "tiempoSegundos": 30
   },
   {
     "id": "case_04",
     "piezaId": "case",
-    "pregunta": "Antes de instalar una placa madre en un gabinete, ¿qué debes comprobar?",
+    "pregunta": "¿Qué debes comprobar antes de instalar una placa madre en un gabinete?",
     "opciones": [
-      "Que el gabinete tenga la misma marca que la RAM",
-      "Que todos los ventiladores sean del mismo color",
-      "Que el gabinete sea compatible con el formato de la placa y tenga los separadores correctamente ubicados",
-      "Que la computadora esté encendida"
+      "Que ambos tengan el mismo color",
+      "Que el gabinete no tenga ventiladores",
+      "Que la computadora esté encendida",
+      "Que los separadores sean adecuados para el formato de la placa madre"
     ],
-    "correcta": 2,
-    "explicacion": "El formato de la placa debe ser compatible con el gabinete. Los separadores deben colocarse en las posiciones correctas para evitar contactos eléctricos indebidos.",
-    "tiempoSegundos": 30
-  },
-  {
-    "id": "case_05",
-    "piezaId": "case",
-    "pregunta": "¿Qué se debe considerar al instalar ventiladores adicionales en el gabinete?",
-    "opciones": [
-      "Que todos expulsen aire en la misma dirección sin importar su ubicación",
-      "Que la entrada y salida de aire estén equilibradas y permitan un flujo eficiente",
-      "Que los ventiladores bloqueen los filtros de polvo",
-      "Que los cables de alimentación queden sobre las aspas"
-    ],
-    "correcta": 1,
-    "explicacion": "Una distribución adecuada de entradas y salidas de aire ayuda a evacuar el calor y reduce las zonas con circulación deficiente.",
+    "correcta": 3,
+    "explicacion": "El mantenimiento de la placa madre y del gabinete indica utilizar separadores adecuados para su formato y evitar contactos eléctricos indebidos.",
     "tiempoSegundos": 30
   }
 ]
