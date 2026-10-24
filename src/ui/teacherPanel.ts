@@ -71,7 +71,7 @@ export class TeacherPanel {
           id="docente-pin"
           type="password"
           placeholder="Ej: 1234"
-          value="1234"
+          value=""
           style="width: 100%; box-sizing: border-box; padding: 12px; border-radius: 10px; background: #06161a; color: var(--silk); border: 2px solid var(--pcb-line); font-size: 18px; margin-top: 6px;"
           required
         />
