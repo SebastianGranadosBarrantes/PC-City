@@ -1,5 +1,5 @@
-/* Mientras carga, el fondo es del color del cielo (evita el parpadeo blanco). */
-body { background: #87ceeb; }
+/* Mientras carga, el fondo es del color del atardecer (evita el parpadeo blanco). */
+body { background: #d96843; }
 
 /* ---- Pantalla de inicio y créditos ---- */
 .start-screen {

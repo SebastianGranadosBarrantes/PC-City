@@ -13,7 +13,7 @@ export interface StartScreenOptions {
   creditos: CreditosData;
   /** Se llama con el nombre y código de sesión validados cuando el jugador presiona "Jugar". */
   onStart: (nombre: string, codigoSesion: string) => void;
-  onShowLeaderboard?: () => void;
+  onShowLeaderboard?: (codigoSesion: string) => void;
   onOpenTeacherPanel?: () => void;
 }
 
@@ -43,11 +43,14 @@ export class StartScreen {
     this.errorSesion = this.find('#sesion-error');
     this.btnJugar = this.find<HTMLButtonElement>('#btn-jugar');
 
-    // Auto-completar sesión desde la URL si viene como parámetro ?session=...
+    // Auto-completar sesión desde la URL si viene como parámetro ?session=... o del último uso
     const urlParams = new URLSearchParams(window.location.search);
     const sessionParam = urlParams.get('session');
     if (sessionParam) {
       this.inputSesion.value = sessionParam.trim().toUpperCase();
+    } else {
+      const lastSession = localStorage.getItem('pc_city_last_session');
+      if (lastSession) this.inputSesion.value = lastSession;
     }
 
     this.renderCreditos(options.creditos);
@@ -87,6 +90,7 @@ export class StartScreen {
         return;
       }
 
+      localStorage.setItem('pc_city_last_session', resSesion.codigo);
       this.btnJugar.disabled = false;
       this.btnJugar.textContent = 'Jugar';
       options.onStart(resNombre.nombre, resSesion.codigo);
@@ -100,7 +104,10 @@ export class StartScreen {
 
     this.find('#btn-creditos').addEventListener('click', () => this.mostrarPanel('creditos'));
     this.find('#btn-volver').addEventListener('click', () => this.mostrarPanel('inicio'));
-    this.find('#btn-tabla-inicio')?.addEventListener('click', () => options.onShowLeaderboard?.());
+    this.find('#btn-tabla-inicio')?.addEventListener('click', () => {
+      const code = this.inputSesion.value.trim().toUpperCase() || 'DEFAULT';
+      options.onShowLeaderboard?.(code);
+    });
     this.find('#btn-docente-inicio')?.addEventListener('click', () => options.onOpenTeacherPanel?.());
 
     this.inputNombre.focus();

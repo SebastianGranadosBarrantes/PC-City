@@ -12,7 +12,6 @@ export interface PreguntaData {
 }
 
 export interface ColiseoQuizOptions {
-  onNewStudent?: (nombre: string, codigoSesion: string) => void;
   onClose?: () => void;
 }
 
@@ -62,11 +61,39 @@ export class ColiseoQuiz {
     return !this.overlay.classList.contains('hidden');
   }
 
+  hasCompleted(nombre = this.playerName, sessionCode = this.sessionCode): boolean {
+    const cleanName = (nombre || '').trim().toLowerCase();
+    const cleanSession = (sessionCode || '').trim().toUpperCase();
+    if (!cleanName || !cleanSession) return false;
+    try {
+      return localStorage.getItem(`pc_city_completed_${cleanSession}_${cleanName}`) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  private markCompleted(nombre: string, sessionCode: string): void {
+    const cleanName = (nombre || '').trim().toLowerCase();
+    const cleanSession = (sessionCode || '').trim().toUpperCase();
+    if (!cleanName || !cleanSession) return;
+    try {
+      localStorage.setItem(`pc_city_completed_${cleanSession}_${cleanName}`, 'true');
+    } catch (e) {
+      console.warn('Error al guardar estado de quiz completado:', e);
+    }
+  }
+
   open(nombre: string, sessionCode = 'DEFAULT'): void {
     this.playerName = nombre.trim() || 'Estudiante';
     this.sessionCode = sessionCode.trim().toUpperCase() || 'DEFAULT';
     this.overlay.classList.remove('hidden');
-    this.showWelcome();
+
+    // Si el jugador ya completó el quiz en esta sesión, solo ve la tabla de posiciones
+    if (this.hasCompleted(this.playerName, this.sessionCode)) {
+      this.showLeaderboardView(this.sessionCode);
+    } else {
+      this.showWelcome();
+    }
   }
 
   close(): void {
@@ -82,6 +109,11 @@ export class ColiseoQuiz {
   private async showWelcome(): Promise<void> {
     this.stopTimer();
     this.detachKeyListener();
+
+    if (this.hasCompleted(this.playerName, this.sessionCode)) {
+      this.showLeaderboardView(this.sessionCode);
+      return;
+    }
 
     this.container.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -122,7 +154,7 @@ export class ColiseoQuiz {
       if (slot) {
         if (scores.length > 0) {
           const leader = scores[0];
-          slot.innerHTML = `👑 Líder actual del chocolate: <strong>${escapeHtml(leader.nombre)}</strong> (${leader.puntos.toLocaleString()} pts)`;
+          slot.innerHTML = `👑 Dueño actual del chocolate: <strong>${escapeHtml(leader.nombre)}</strong> (${leader.puntos.toLocaleString()} pts)`;
         } else {
           slot.innerHTML = `¡Aún no hay puntuaciones en esta sesión, sé el primero en establecer récord!`;
         }
@@ -375,6 +407,9 @@ export class ColiseoQuiz {
       tiempoTotal: elapsedTotal,
     });
 
+    // Marcar como completado para que el jugador no pueda volver a intentar el quiz
+    this.markCompleted(this.playerName, this.sessionCode);
+
     const allEntries = await CloudSessionService.getScores(this.sessionCode);
     const leader = allEntries[0];
 
@@ -469,22 +504,10 @@ export class ColiseoQuiz {
         </div>
       </div>
 
-      <div class="actions" style="justify-content: space-between;">
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <button type="button" id="btn-reintentar" class="btn btn-primary">Reintentar Quiz 🔁</button>
-          <button type="button" id="btn-nuevo-estudiante" class="btn btn-secondary">Cambiar Estudiante 👤</button>
-        </div>
-        <button type="button" id="btn-volver-ciudad" class="btn btn-secondary">Volver a la Ciudad 🚗</button>
+      <div class="actions" style="justify-content: center;">
+        <button type="button" id="btn-volver-ciudad" class="btn btn-primary" style="min-width: 220px;">Volver a la Ciudad 🚗</button>
       </div>
     `;
-
-    this.container.querySelector('#btn-reintentar')?.addEventListener('click', () => {
-      this.startQuiz();
-    });
-
-    this.container.querySelector('#btn-nuevo-estudiante')?.addEventListener('click', () => {
-      this.promptNewStudent();
-    });
 
     this.container.querySelector('#btn-volver-ciudad')?.addEventListener('click', () => {
       this.close();
@@ -497,12 +520,12 @@ export class ColiseoQuiz {
   async showLeaderboardView(sessionCode = this.sessionCode): Promise<void> {
     this.stopTimer();
     this.detachKeyListener();
-    this.sessionCode = sessionCode;
+    this.sessionCode = sessionCode.trim().toUpperCase() || 'DEFAULT';
 
     this.container.innerHTML = `
       <div style="text-align: center; padding: 40px 20px;">
         <div class="chocolate-icon" style="font-size: 54px; margin-bottom: 16px;">⏳</div>
-        <h2>Cargando tabla de la sesión ${escapeHtml(sessionCode)}…</h2>
+        <h2>Cargando tabla de la sesión ${escapeHtml(this.sessionCode)}…</h2>
       </div>
     `;
     this.overlay.classList.remove('hidden');
@@ -520,6 +543,12 @@ export class ColiseoQuiz {
       <p class="coliseo-lead">
         Revisa las puntuaciones de tus compañeros en la sesión <strong>${escapeHtml(this.sessionCode)}</strong>. ¡El primer lugar se lleva el chocolate!
       </p>
+
+      <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 16px; background: rgba(29, 74, 67, 0.35); padding: 10px 14px; border-radius: 10px; border: 1px solid var(--pcb-line); flex-wrap: wrap;">
+        <label for="input-cambiar-sesion-tabla" style="font-size: 13px; font-weight: 700; color: var(--gold);">Consultar otra sesión:</label>
+        <input id="input-cambiar-sesion-tabla" type="text" value="${escapeHtml(this.sessionCode)}" maxlength="15" style="text-transform: uppercase; font-family: monospace; font-weight: 700; padding: 6px 12px; border-radius: 6px; background: #06161a; color: var(--silk); border: 1px solid var(--gold); width: 150px;" />
+        <button type="button" id="btn-cambiar-sesion-tabla" class="btn btn-secondary" style="padding: 6px 14px; font-size: 13px;">🔍 Consultar</button>
+      </div>
 
       ${
         leader
@@ -575,10 +604,25 @@ export class ColiseoQuiz {
       </div>
 
       <div class="actions">
-        <button type="button" id="btn-volver-coliseo" class="btn btn-primary">Volver al Desafío</button>
-        <button type="button" id="btn-cerrar-tabla" class="btn btn-secondary">Cerrar</button>
+        ${
+          !this.hasCompleted(this.playerName, this.sessionCode)
+            ? `<button type="button" id="btn-volver-coliseo" class="btn btn-primary">Volver al Desafío</button>
+               <button type="button" id="btn-cerrar-tabla" class="btn btn-secondary">Cerrar</button>`
+            : `<button type="button" id="btn-cerrar-tabla" class="btn btn-primary" style="min-width: 200px;">Volver a la Ciudad 🚗</button>`
+        }
       </div>
     `;
+
+    const inputSwitch = this.container.querySelector<HTMLInputElement>('#input-cambiar-sesion-tabla');
+    const btnSwitch = this.container.querySelector('#btn-cambiar-sesion-tabla');
+    const doSwitch = () => {
+      const code = inputSwitch?.value.trim().toUpperCase() || 'DEFAULT';
+      this.showLeaderboardView(code);
+    };
+    btnSwitch?.addEventListener('click', doSwitch);
+    inputSwitch?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSwitch();
+    });
 
     this.container.querySelector('#btn-volver-coliseo')?.addEventListener('click', () => {
       this.showWelcome();
@@ -587,16 +631,6 @@ export class ColiseoQuiz {
     this.container.querySelector('#btn-cerrar-tabla')?.addEventListener('click', () => {
       this.close();
     });
-  }
-
-  private promptNewStudent(): void {
-    const nuevo = prompt('Escribe el nombre del nuevo estudiante:', '');
-    if (nuevo && nuevo.trim()) {
-      const nombreLimpio = nuevo.trim();
-      this.playerName = nombreLimpio;
-      this.options.onNewStudent?.(nombreLimpio, this.sessionCode);
-      this.showWelcome();
-    }
   }
 }
 

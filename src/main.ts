@@ -19,25 +19,24 @@ import { Popup } from './ui/popup';
 import { StartScreen } from './ui/startScreen';
 import { ColiseoQuiz } from './ui/coliseoQuiz';
 import { TeacherPanel } from './ui/teacherPanel';
+import { createSunsetSky, setupSunsetLighting, SUNSET_FOG_COLOR } from './world/sunset';
 
 const piezas: PiezaData[] = piezasJson;
 
-// ---------- Escena base ----------
-const SKY = 0x87ceeb;
+// ---------- Escena base (Atardecer cálido) ----------
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(SKY);
-scene.fog = new THREE.Fog(SKY, 80, 260); // suaviza el horizonte y esconde el borde del mundo
+scene.background = createSunsetSky();
+scene.fog = new THREE.Fog(SUNSET_FOG_COLOR, 75, 270); // difumina suavemente el horizonte en tonos dorados
 
-scene.add(new THREE.HemisphereLight(0xffffff, 0x556655, 1.6));
-const sun = new THREE.DirectionalLight(0xffffff, 2);
-sun.position.set(50, 100, 30);
-scene.add(sun);
+setupSunsetLighting(scene);
 
 const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.5, 600);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
 document.body.appendChild(renderer.domElement);
 
 window.addEventListener('resize', () => {
@@ -57,12 +56,7 @@ const popup = new Popup();
 const session = new Session();
 const progress = new Progress(piezas.map((p) => p.id));
 
-const coliseoQuiz = new ColiseoQuiz({
-  onNewStudent: (nuevoNombre, nuevaSesion) => {
-    session.iniciar(nuevoNombre, nuevaSesion);
-    hud.setPlayer(session.nombre, session.codigoSesion);
-  },
-});
+const coliseoQuiz = new ColiseoQuiz();
 
 const teacherPanel = new TeacherPanel({
   onSessionActive: (codigo) => {
@@ -81,8 +75,8 @@ const startScreen = new StartScreen({
     chase.snap(); // la cámara pasa de golpe a ir detrás del carro
     estado = 'jugando';
   },
-  onShowLeaderboard: () => {
-    coliseoQuiz.showLeaderboardView(session.codigoSesion || 'DEFAULT');
+  onShowLeaderboard: (codigo) => {
+    coliseoQuiz.showLeaderboardView(codigo || session.codigoSesion || 'DEFAULT');
   },
   onOpenTeacherPanel: () => {
     teacherPanel.open();
@@ -115,10 +109,15 @@ const city = await buildCity(scene, piezas, {
     }
     coliseoQuiz.open(session.nombre, session.codigoSesion);
   },
-  autodromoPrompt: () =>
-    progress.isComplete
-      ? 'Presiona E para entrar al Coliseo y jugar el Desafío 🍫'
-      : `Coliseo bloqueado: ${faltan(progress.missing)}`,
+  autodromoPrompt: () => {
+    if (!progress.isComplete) {
+      return `Coliseo bloqueado: ${faltan(progress.missing)}`;
+    }
+    if (coliseoQuiz.hasCompleted(session.nombre, session.codigoSesion)) {
+      return 'Presiona E para ver la tabla del Coliseo 🏆';
+    }
+    return 'Presiona E para entrar al Coliseo y jugar el Desafío 🍫';
+  },
 });
 
 // ---------- Jugador ----------

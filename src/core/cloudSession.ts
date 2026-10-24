@@ -5,8 +5,6 @@ import {
   setDoc,
   addDoc,
   getDocs,
-  query,
-  orderBy,
   onSnapshot,
   writeBatch,
   type Unsubscribe,
@@ -161,6 +159,7 @@ export class CloudSessionService {
 
   /**
    * Obtiene la lista ordenada de puntuaciones de la sesión.
+   * Se ordena en memoria para no requerir índices compuestos manuales en Firebase.
    */
   static async getScores(code: string): Promise<LeaderboardEntry[]> {
     const cleanCode = code.trim().toUpperCase();
@@ -169,9 +168,9 @@ export class CloudSessionService {
     if (db && isFirebaseConfigured()) {
       try {
         const scoresCol = collection(db, 'sessions', cleanCode, 'scores');
-        const q = query(scoresCol, orderBy('puntos', 'desc'), orderBy('tiempoTotal', 'asc'));
-        const snap = await getDocs(q);
-        return snap.docs.map((d) => ({ ...d.data(), id: d.id } as LeaderboardEntry));
+        const snap = await getDocs(scoresCol);
+        const list = snap.docs.map((d) => ({ ...d.data(), id: d.id } as LeaderboardEntry));
+        return list.sort((a, b) => (b.puntos ?? 0) - (a.puntos ?? 0) || (a.tiempoTotal ?? 0) - (b.tiempoTotal ?? 0));
       } catch (e) {
         console.error('Error al consultar puntajes en Firestore:', e);
         return [];
@@ -193,11 +192,17 @@ export class CloudSessionService {
 
     if (db && isFirebaseConfigured()) {
       const scoresCol = collection(db, 'sessions', cleanCode, 'scores');
-      const q = query(scoresCol, orderBy('puntos', 'desc'), orderBy('tiempoTotal', 'asc'));
-      return onSnapshot(q, (snap) => {
-        const list = snap.docs.map((d) => ({ ...d.data(), id: d.id } as LeaderboardEntry));
-        callback(list);
-      });
+      return onSnapshot(
+        scoresCol,
+        (snap) => {
+          const list = snap.docs.map((d) => ({ ...d.data(), id: d.id } as LeaderboardEntry));
+          list.sort((a, b) => (b.puntos ?? 0) - (a.puntos ?? 0) || (a.tiempoTotal ?? 0) - (b.tiempoTotal ?? 0));
+          callback(list);
+        },
+        (err) => {
+          console.error('Error al suscribir puntajes en Firestore:', err);
+        },
+      );
     }
 
     // Modo simulado: escucha cambios locales y eventos de storage

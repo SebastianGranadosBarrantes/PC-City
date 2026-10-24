@@ -2,8 +2,8 @@
   {
     "id": "cpu",
     "nombre": "Procesador (CPU)",
-    "descripcion": "Es el cerebro del computador: ejecuta las instrucciones de los programas y coordina el trabajo de los demás componentes. Su rendimiento depende de la cantidad de núcleos y de su velocidad, medida en GHz.",
-    "mantenimiento": "Si se retira el disipador, hay que limpiar la pasta térmica vieja y aplicar nueva. Una temperatura que sube sin motivo suele indicar polvo o pasta seca.",
+    "descripcion": "Es el cerebro de la computadora: ejecuta las instrucciones de los programas y coordina el trabajo de los demás componentes. Su rendimiento depende de la cantidad de núcleos y de su velocidad, medida en GHz.",
+    "mantenimiento": "Si se retira el disipador, hay que limpiar la pasta térmica vieja y aplicar nueva. Una temperatura que sube sin motivo suele indicar polvo o pasta seca. Para instalarlo, alinea los triangulos de la CPU y el socket, y baja la bandeja con cuidado. Nunca toques los pines del procesador.",
     "x": -55, "z": -52, "ancho": 14, "alto": 8, "fondo": 14,
     "filePath": "assets/models/parts/cpu.glb",
     "rotacion": { "y": 180 }
@@ -11,8 +11,8 @@
   {
     "id": "ram",
     "nombre": "Memoria RAM",
-    "descripcion": "Es la memoria de trabajo: guarda temporalmente los datos y programas que se están usando, porque es mucho más rápida que el disco. Su contenido se borra al apagar el equipo.",
-    "mantenimiento": "Instálala con el equipo apagado y desconectado, sin tocar los contactos dorados, y presiona hasta que los seguros laterales cierren. Una RAM mal asentada puede impedir que el equipo encienda.",
+    "descripcion": "Es la memoria de trabajo: guarda temporalmente los datos y programas que se están usando, porque es mucho más rápida que el almacenamiento principal. Su contenido es volátil, se borra al apagar el equipo.",
+    "mantenimiento": "Instálala con el equipo apagado y desconectado, sin tocar los contactos dorados, y presiona hasta que los seguros laterales cierren. Una RAM mal asentada puede impedir que el equipo encienda. Una ram con los contactos sucios puede provocar que el equipo no arranque o se reinicie. Límpiala con aire comprimido, limpia los contactos con borrador.",
     "x": -85, "z": -11, "ancho": 18, "alto": 24, "fondo": 5,
     "filePath": "assets/models/parts/ram.glb",
     "rotacion": { "y": 180 }
@@ -20,8 +20,8 @@
   {
     "id": "placa",
     "nombre": "Placa madre",
-    "descripcion": "Es la tarjeta principal donde se conectan el procesador, la RAM, el almacenamiento y las demás tarjetas. Lleva los circuitos que permiten que todos los componentes se comuniquen.",
-    "mantenimiento": "Límpiala con brocha antiestática o aire comprimido, sin humedad. Si el equipo pierde la fecha y la hora o la configuración del BIOS, revisa la batería de la placa.",
+    "descripcion": "Es la tarjeta principal donde se conectan el procesador, la RAM, el almacenamiento y los demás componentes. Lleva los circuitos que permiten que todos los componentes se comuniquen.",
+    "mantenimiento": "Límpiala con brocha antiestática o aire comprimido, sin humedad. Si el equipo pierde la fecha y la hora o la configuración del BIOS, revisa la batería CMOS de la placa.",
     "x": -91, "z": 42, "ancho": 16, "alto": 16, "fondo": 16,
     "filePath": "assets/models/parts/motherboard.glb",
     "rotacion": { "x": 90, "y": -90 }
@@ -38,7 +38,7 @@
     "id": "almacenamiento_hdd",
     "nombre": "Almacenamiento (HDD)",
     "descripcion": "Guarda de forma permanente el sistema operativo, los programas y los archivos. El HDD usa discos que giran, tiende a ser más lento y ruidoso, pero es más barato y ofrece más capacidad de almacenamiento que un SSD.",
-    "mantenimiento": "Haz respaldos periódicos. Un HDD no debe golpearse ni moverse mientras está encendido, el HDD se beneficia de la desfragmentación. La longevidad de un HDD puede mejorar si se implementa un RAID o se combina con un SSD.",
+    "mantenimiento": "Haz respaldos periódicos. Un HDD no debe golpearse ni moverse mientras está encendido, el HDD se beneficia de la desfragmentación. La longevidad de un HDD puede mejorar si se implementa un RAID o se combina con un SSD para el sistema operativo.",
     "x": -45, "z": 69, "ancho": 14, "alto": 6, "fondo": 20,
     "filePath": "assets/models/parts/hdd.glb",
     "rotacion": { "x": 90 }
@@ -55,16 +55,16 @@
   {
     "id": "fuente",
     "nombre": "Fuente de poder",
-    "descripcion": "Convierte la corriente alterna de la toma eléctrica en corriente continua de bajo voltaje y la reparte a todos los componentes.",
-    "mantenimiento": "Nunca la abras: sus capacitores pueden conservar carga aunque esté desconectada. Mantén limpias sus rejillas de ventilación y, si falla, pruébala con un tester o cámbiala.",
+    "descripcion": "Convierte la corriente alterna del toma corriente en corriente continua de bajo voltaje y la reparte a todos los componentes.",
+    "mantenimiento": "En la medida de lo posible debe evitarse abrirla: sus capacitores pueden conservar carga aunque esté desconectada. Mantén limpias sus rejillas de ventilación. Una fuente defectuosa puede causar que el equipo no encienda o se apague de forma inesperada.",
     "x": 55, "z": 72, "ancho": 14, "alto": 14, "fondo": 14,
     "filePath": "assets/models/parts/psu.glb"
   },
   {
     "id": "cooler",
-    "nombre": "Disipador y ventilador",
-    "descripcion": "Extrae el calor del procesador: un bloque de metal absorbe el calor y un ventilador lo expulsa. Sin enfriamiento, el procesador reduce su velocidad o se apaga para protegerse.",
-    "mantenimiento": "Quita el polvo con aire comprimido, sujetando las aspas para que no giren de más. Renueva la pasta térmica cuando retires el disipador.",
+    "nombre": "Disipador (cooler)",
+    "descripcion": "Extrae el calor del procesador. Existen disipadores por aire y por líquido; en ambos casos, un bloque de metal absorbe el calor y un ventilador lo expulsa. Sin enfriamiento, el procesador reduce su velocidad o se apaga para protegerse.",
+    "mantenimiento": "Quita el polvo con aire comprimido, sujetando las aspas para que no giren de más. Renueva la pasta térmica cuando retires el disipador. Un disipador mal instalado puede impedir que el equipo encienda o que el procesador se sobrecaliente.",
     "x": 55, "z": -53, "ancho": 12, "alto": 12, "fondo": 12,
     "filePath": "assets/models/parts/cpu_cooler.glb"
   },
