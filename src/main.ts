@@ -78,7 +78,7 @@ const startScreen = new StartScreen({
     estado = 'jugando';
   },
   onShowLeaderboard: (codigo) => {
-    coliseoQuiz.showLeaderboardView(codigo || session.codigoSesion || 'DEFAULT');
+    coliseoQuiz.showLeaderboardView(codigo || session.codigoSesion );
   },
   onOpenTeacherPanel: () => {
     teacherPanel.open();

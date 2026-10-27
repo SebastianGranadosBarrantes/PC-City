@@ -281,7 +281,7 @@ export class CloudSessionService {
       const raw = localStorage.getItem(LOCAL_SESSIONS_KEY);
       const sessions: Record<string, SessionDoc> = raw ? JSON.parse(raw) : {};
       // Sesión predeterminada siempre disponible para pruebas
-      if (code === 'DEMO' || code === 'DEFAULT' || code === 'CLASE-1') {
+      if (code === 'DEMO' || code === 'CLASE-1') {
         return { ok: true, title: 'Sesión de Demostración' };
       }
       const s = sessions[code];
